@@ -1,141 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title> <!-- change this to the title of the tab you want -->
+    <title>Home</title>
+    
+    <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="config/main.css">
+    <script src="config/main.js" type="module"></script>
+    
+    <!-- Include particles.js library from CDN -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #6a4c9c;
-            color: white;
+            background-color: Bright violet;
+            overflow: hidden;
+            position: relative;
         }
-        header {
-            background-color: #5e3b8f;
-            color: white;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: flex-end;
-        }
-        header button {
-            background-color: #7f5f9f;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 20px;
-        }
-        header button:hover {
-            background-color: #9b6fcf;
-        }
-        .section {
-            padding: 40px;
-            text-align: center;
-            background-color: #7f5f9f;
-        }
-        .game-card {
-            display: inline-block;
-            width: 200px;
-            height: 250px;
-            background-color: #8e6ba7;
-            margin: 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            color: white;
-            text-align: center;
-        }
-        .game-card img {
-            width: 100%;
-            height: 160px;
-            border-radius: 10px 10px 0 0;
-        }
-        .game-card h3 {
-            margin-top: 10px;
-        }
-        footer {
-            background-color: #5e3b8f;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        iframe.fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
+
+        #particles-js {
+            position: absolute;
             width: 100%;
             height: 100%;
-            border: none;
-            z-index: 1000;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Set behind other elements */
+        }
+
+        .center {
+            position: relative; /* Make sure form display correctly over particles */
+            z-index: 1; /* Bring this content in front of particles */
         }
     </style>
-    <script>
-        function openFullscreen(url) {
-            const iframe = document.createElement('iframe');
-            iframe.src = url;
-            iframe.className = 'fullscreen';
-            iframe.setAttribute('allowfullscreen', '');
-            document.body.appendChild(iframe);
-
-            iframe.onclick = () => {
-                iframe.remove(); // closes the iframe once you click (remove this if not wanted)
-            };
-        }
-    </script>
-</head>
+<link rel="stylesheet" href="chrome-extension://33c238ce-fa41-42aa-8dae-67610a1246b7/app/content-style.css"></head>
 <body>
-        </header>
-    <div class="section">
-        <h2>Games</h2> <!-- change this to what you want above ur games -->
-        <div class="game-card" onclick="openFullscreen('https://krunker.io/')"> 
-            <img src="https://kevin.games/assets/images/games/krunker-io.jpg" alt="Krunker.io">
-            <h3>Krunker.io</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://agar.io/')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHaBmrNqCK6xfStjMmy-bdzsHuUOn3DBkd7w&s" alt="Agar.io">
-            <h3>Agar.io</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://slither.io/')">
-            <img src="https://slithergame.io//data/image/game/slithergame-favicon.png" alt="Slither.io">
-            <h3>Slither.io</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://shellshock.io/')">
-            <img src="https://imgs.crazygames.com/shellshockersio_1x1/20260203211252/shellshockersio_1x1-cover?format=auto&quality=100&metadata=none&width=1200" alt="Shell Shockers">
-            <h3>Shell Shockers</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://diep.io/')">
-            <img src="https://upload.wikimedia.org/wikipedia/en/e/e2/Diepio_mobile_logo.webp" alt="Diep.io">
-            <h3>Diep.io</h3>
-            <!-- copy one of these to add new games, change link to wanted game, and img to a links favicon (icon on the tab) the alt will just show the text if img doesnt work (change the text to work as well) -->
-        </div>
+
+    <div id="particles-js"><canvas class="particles-js-canvas-el" width="1232" height="868" style="width: 100%; height: 100%;"></canvas></div> <!-- Particles container -->
+
+    <div class="center">
+        <h1 id="title">big ballsack jacob</h1>
+        <p id="subtitle">Make school fun.</p>
     </div>
-</body> 
-</html>
+    <div class="center">
+        <input type="text" id="searchInput" placeholder="Search games">
+    </div>
+    <div id="gamesContainer"><div class="game"><img src="https://gms.parcoil.com/1v1lol/logo.png" alt="1v1lol"><p>1v1lol</p></div><div class="game"><img src="https://gms.parcoil.com/1v1space/splash.png" alt="1v1space"><p>1v1space</p></div><div class="game"><img src="https://gms.parcoil.com/10-minutes-till-dawn/splash.png" alt="10 Minutes Till Dawn"><p>10 Minutes Till Dawn</p></div><div class="game"><img src="https://gms.parcoil.com/100ng/100ng.jpg" alt="100ng"><p>100ng</p></div><div class="game"><img src="https://gms.parcoil.com/2048/2048.png" alt="2048"><p>2048</p></div><div class="game"><img src="https://gms.parcoil.com/2048-multitask/splash.png" alt="2048 Multitask"><p>2048 Multitask</p></div><div class="game"><img src="https://gms.parcoil.com/9007199254740992/logo-4.png" alt="9007199254740992"><p>9007199254740992</p></div><div class="game"><img src="https://gms.parcoil.com/DogeMiner/favicon.ico" alt="DogeMiner"><p>DogeMiner</p></div><div class="game"><img src="https://gms.parcoil.com/HexGL/icon.png" alt="HexGL"><p>HexGL</p></div><div class="game"><img src="https://gms.parcoil.com/OfflineParadise/assets/icon.jpeg" alt="Offline Paradise"><p>Offline Paradise</p></div><div class="game"><img src="https://gms.parcoil.com/Stickman-Survival/Icon.png" alt="Stickman Survival"><p>Stickman Survival</p></div><div class="game"><img src="https://gms.parcoil.com/a-dance-of-fire-and-ice/splash.png" alt="A Dance of Fire and Ice"><p>A Dance of Fire and Ice</p></div><div class="game"><img src="https://gms.parcoil.com/achievementunlocked/achievementunlocked.png" alt="Achievement Unlocked"><p>Achievement Unlocked</p></div><div class="game"><img src="https://gms.parcoil.com/adarkroom/splash.png" alt="A Dark Room"><p>A Dark Room</p></div><div class="game"><img src="https://gms.parcoil.com/adrenalinechallenge/adrenalinechallenge.jpg" alt="Adrenaline Challenge"><p>Adrenaline Challenge</p></div><div class="game"><img src="https://gms.parcoil.com/adventure-drivers/splash.png" alt="Adventure Drivers"><p>Adventure Drivers</p></div><div class="game"><img src="https://gms.parcoil.com/ages-of-conflict/splash.jpg" alt="Ages of Conflict"><p>Ages of Conflict</p></div><div class="game"><img src="https://gms.parcoil.com/alienhominid/alienhominid.jpg" alt="Alien Hominid"><p>Alien Hominid</p></div><div class="game"><img src="https://gms.parcoil.com/align-4/board.png" alt="Align 4"><p>Align 4</p></div><div class="game"><img src="https://gms.parcoil.com/amidst-the-clouds/splash.png" alt="Amidst the Clouds"><p>Amidst the Clouds</p></div><div class="game"><img src="https://gms.parcoil.com/among-us/red.png" alt="Among Us"><p>Among Us</p></div><div class="game"><img src="https://gms.parcoil.com/angry-sharks/assets/img/splash.png" alt="Angry Sharks"><p>Angry Sharks</p></div><div class="game"><img src="https://gms.parcoil.com/aquapark-slides/splash.png" alt="Aquapark Slides"><p>Aquapark Slides</p></div><div class="game"><img src="https://gms.parcoil.com/astray/splash.png" alt="Astray"><p>Astray</p></div><div class="game"><img src="https://gms.parcoil.com/avalanche/avalanche.png" alt="Avalanche"><p>Avalanche</p></div><div class="game"><img src="https://gms.parcoil.com/awesometanks2/awesometanks2.jpg" alt="Awesome Tanks 2"><p>Awesome Tanks 2</p></div><div class="game"><img src="https://gms.parcoil.com/backrooms/img/splash.jpg" alt="Backrooms"><p>Backrooms</p></div><div class="game"><img src="https://gms.parcoil.com/bad-ice-cream/bad-ice-cream.png" alt="Bad Ice Cream"><p>Bad Ice Cream</p></div><div class="game"><img src="https://gms.parcoil.com/bad-ice-cream-2/bad-ice-cream-2.png" alt="Bad Ice Cream 2"><p>Bad Ice Cream 2</p></div><div class="game"><img src="https://gms.parcoil.com/bad-ice-cream-3/bad-ice-cream-3.png" alt="Bad Ice Cream 3"><p>Bad Ice Cream 3</p></div><div class="game"><img src="https://gms.parcoil.com/baldis-basics/splash.png" alt="Baldi's Basics"><p>Baldi's Basics</p></div><div class="game"><img src="https://gms.parcoil.com/ballistic-chickens/logo.png" alt="Ballistic Chickens"><p>Ballistic Chickens</p></div><div class="game"><img src="https://gms.parcoil.com/basket-random/splash.jpeg" alt="Basket Random"><p>Basket Random</p></div><div class="game"><img src="https://gms.parcoil.com/basketball-stars/assets/images/basketball-stars.png" alt="Basketball Stars"><p>Basketball Stars</p></div><div class="game"><img src="https://gms.parcoil.com/basketbros-io/thumb.jpg" alt="Basketbros.io"><p>Basketbros.io</p></div><div class="game"><img src="https://gms.parcoil.com/battleforgondor/battleforgondor.JPG" alt="Battle for Gondor"><p>Battle for Gondor</p></div><div class="game"><img src="https://gms.parcoil.com/bigredbutton/bigredbutton.png" alt="Big Red Button"><p>Big Red Button</p></div><div class="game"><img src="https://gms.parcoil.com/bitlife/splash.png" alt="BitLife"><p>BitLife</p></div><div class="game"><img src="https://gms.parcoil.com/blacholesquare/icon.png" alt="Black Hole Square"><p>Black Hole Square</p></div><div class="game"><img src="https://gms.parcoil.com/blackknight/blackknight.png" alt="Black Knight"><p>Black Knight</p></div><div class="game"><img src="https://gms.parcoil.com/bloonstd/bloonstd.jpg" alt="Bloons TD"><p>Bloons TD</p></div><div class="game"><img src="https://gms.parcoil.com/bloonstd2/bloonstd2.png" alt="Bloons TD 2"><p>Bloons TD 2</p></div><div class="game"><img src="https://gms.parcoil.com/bloxors/title.png" alt="Bloxors"><p>Bloxors</p></div><div class="game"><img src="https://gms.parcoil.com/bntts/icons/icon-256.png" alt="BNTTS"><p>BNTTS</p></div><div class="game"><img src="https://gms.parcoil.com/bobtherobber2/splash.jpeg" alt="Bob the Robber 2"><p>Bob the Robber 2</p></div><div class="game"><img src="https://gms.parcoil.com/boxhead2play/boxhead2play.jpg" alt="Boxhead 2 Play"><p>Boxhead 2 Play</p></div><div class="game"><img src="https://gms.parcoil.com/boxing-random/512x512.jpg" alt="Boxing Random"><p>Boxing Random</p></div><div class="game"><img src="https://gms.parcoil.com/breakingthebank/breakingthebank.png" alt="Breaking the Bank"><p>Breaking the Bank</p></div><div class="game"><img src="https://gms.parcoil.com/btts/images.png" alt="BTTS"><p>BTTS</p></div><div class="game"><img src="https://gms.parcoil.com/burger-and-frights/splash.png" alt="Burger and Frights"><p>Burger and Frights</p></div><div class="game"><img src="https://gms.parcoil.com/cannon-basketball-4/img/splash.png" alt="Cannon Basketball 4"><p>Cannon Basketball 4</p></div><div class="game"><img src="https://gms.parcoil.com/canyondefense/canyondefense.png" alt="Canyon Defense"><p>Canyon Defense</p></div><div class="game"><img src="https://gms.parcoil.com/cars-simulator/splash.png" alt="Cars Simulator"><p>Cars Simulator</p></div><div class="game"><img src="https://gms.parcoil.com/cell-machine/img/te9nDu.png" alt="Cell Machine"><p>Cell Machine</p></div><div class="game"><img src="https://gms.parcoil.com/champion-island/splash.png" alt="Champion Island"><p>Champion Island</p></div><div class="game"><img src="https://gms.parcoil.com/championarcher/championarcher.png" alt="Champion Archer"><p>Champion Archer</p></div><div class="game"><img src="https://gms.parcoil.com/chill-radio/img/chill-icon.png" alt="Chill Radio"><p>Chill Radio</p></div><div class="game"><img src="https://gms.parcoil.com/chrome-dino/images/default_100_percent/offline/100-error-offline.png" alt="Chrome Dino"><p>Chrome Dino</p></div><div class="game"><img src="https://gms.parcoil.com/circlo/img/download.png" alt="Circlo"><p>Circlo</p></div><div class="game"><img src="https://gms.parcoil.com/cluster-rush/splash.png" alt="Cluster Rush"><p>Cluster Rush</p></div><div class="game"><img src="https://gms.parcoil.com/cnpingpong/tabletennisultimate.png" alt="CN Ping Pong"><p>CN Ping Pong</p></div><div class="game"><img src="https://gms.parcoil.com/connect3/connect3.png" alt="Connect 3"><p>Connect 3</p></div><div class="game"><img src="https://gms.parcoil.com/cookie-clicker/cookie1.jpeg" alt="Cookie Clicker"><p>Cookie Clicker</p></div><div class="game"><img src="https://gms.parcoil.com/core-ball/pr_source.png" alt="Core Ball"><p>Core Ball</p></div><div class="game"><img src="https://gms.parcoil.com/craftmine/images/animal-sheet0.png" alt="Craftmine"><p>Craftmine</p></div><div class="game"><img src="https://gms.parcoil.com/creativekillchamber/creativekillchamber.jpg" alt="Creative Kill Chamber"><p>Creative Kill Chamber</p></div><div class="game"><img src="https://gms.parcoil.com/crossyroad/crossyroad.png" alt="Crossy Road"><p>Crossy Road</p></div><div class="game"><img src="https://gms.parcoil.com/csgo-clicker/images/case1.png" alt="CS:GO Clicker"><p>CS:GO Clicker</p></div><div class="game"><img src="https://gms.parcoil.com/ctr/logo.png" alt="CTR"><p>CTR</p></div><div class="game"><img src="https://gms.parcoil.com/ctr-holiday/favicon.ico" alt="CTR Holiday"><p>CTR Holiday</p></div><div class="game"><img src="https://gms.parcoil.com/ctr-tr/logo.png" alt="CTR TR"><p>CTR TR</p></div><div class="game"><img src="https://gms.parcoil.com/cubefield/assets/unnamed.png" alt="Cubefield"><p>Cubefield</p></div><div class="game"><img src="https://gms.parcoil.com/cupcake2048/favicon.ico" alt="Cupcake 2048"><p>Cupcake 2048</p></div><div class="game"><img src="https://gms.parcoil.com/dante/splash.png" alt="Dante"><p>Dante</p></div><div class="game"><img src="https://gms.parcoil.com/deal-or-no-deal/index.jpg" alt="Deal or No Deal"><p>Deal or No Deal</p></div><div class="game"><img src="https://gms.parcoil.com/death-run-3d/img/death.png" alt="Death Run 3D"><p>Death Run 3D</p></div><div class="game"><img src="https://gms.parcoil.com/defend-the-tank/images/splash.jpg" alt="Defend the Tank"><p>Defend the Tank</p></div><div class="game"><img src="https://gms.parcoil.com/doctor-acorn2/splash.jpg" alt="Doctor Acorn 2"><p>Doctor Acorn 2</p></div><div class="game"><img src="https://gms.parcoil.com/doge2048/doge1.jpeg" alt="Doge 2048"><p>Doge 2048</p></div><div class="game"><img src="https://gms.parcoil.com/doodle-jump/doodle.png" alt="Doodle Jump"><p>Doodle Jump</p></div><div class="game"><img src="https://gms.parcoil.com/doublewires/doublewires.png" alt="Double Wires"><p>Double Wires</p></div><div class="game"><img src="https://gms.parcoil.com/dragon-vs-bricks/splash.png" alt="Dragon vs. Bricks"><p>Dragon vs. Bricks</p></div><div class="game"><img src="https://gms.parcoil.com/draw-the-hill/icons/icon-512.png" alt="Draw the Hill"><p>Draw the Hill</p></div><div class="game"><img src="https://gms.parcoil.com/drift-boss/logo.png" alt="Drift Boss"><p>Drift Boss</p></div><div class="game"><img src="https://gms.parcoil.com/drift-hunters/drift-hunters.png" alt="Drift Hunters"><p>Drift Hunters</p></div><div class="game"><img src="https://gms.parcoil.com/drive-mad/logo.jpg" alt="Drive Mad"><p>Drive Mad</p></div><div class="game"><img src="https://gms.parcoil.com/ducklife1/ducklife.png" alt="Duck Life 1"><p>Duck Life 1</p></div><div class="game"><img src="https://gms.parcoil.com/ducklife2/ducklife2.png" alt="Duck Life 2"><p>Duck Life 2</p></div><div class="game"><img src="https://gms.parcoil.com/ducklife3/duck.png" alt="Duck Life 3"><p>Duck Life 3</p></div><div class="game"><img src="https://gms.parcoil.com/ducklife4/splash.jpg" alt="Duck Life 4"><p>Duck Life 4</p></div><div class="game"><img src="https://gms.parcoil.com/edge-surf/splash.png" alt="Edge Surf"><p>Edge Surf</p></div><div class="game"><img src="https://gms.parcoil.com/edgenotfound/edge.png" alt="Edge Not Found"><p>Edge Not Found</p></div><div class="game"><img src="https://gms.parcoil.com/eel-slap/eel-slap.png" alt="Eel Slap"><p>Eel Slap</p></div><div class="game"><img src="https://gms.parcoil.com/elasticman/elasticman.jpg" alt="Elastic Man"><p>Elastic Man</p></div><div class="game"><img src="https://gms.parcoil.com/endlesswar3/endlesswar3.png" alt="Endless War 3"><p>Endless War 3</p></div><div class="game"><img src="https://gms.parcoil.com/escapingtheprison/escapingtheprison.jpg" alt="Escaping the Prison"><p>Escaping the Prison</p></div><div class="game"><img src="https://gms.parcoil.com/evil-glitch/evil.png" alt="Evil Glitch"><p>Evil Glitch</p></div><div class="game"><img src="https://gms.parcoil.com/evolution/splash.png" alt="Evolution"><p>Evolution</p></div><div class="game"><img src="https://gms.parcoil.com/exo/img/small.jpg" alt="Exo"><p>Exo</p></div><div class="game"><img src="https://gms.parcoil.com/factoryballs/images/splash.png" alt="Factory Balls"><p>Factory Balls</p></div><div class="game"><img src="https://gms.parcoil.com/fairsquares/index.icon.png" alt="Fairsquares"><p>Fairsquares</p></div><div class="game"><img src="https://gms.parcoil.com/fake-virus/icon.png" alt="Fake Virus"><p>Fake Virus</p></div><div class="game"><img src="https://gms.parcoil.com/fancypantsadventures/fancypantsadventure.png" alt="Fancy Pants Adventures"><p>Fancy Pants Adventures</p></div><div class="game"><img src="https://gms.parcoil.com/fireboywatergirlforesttemple/logo.jpeg" alt="Fireboy and Watergirl: Forest Temple"><p>Fireboy and Watergirl: Forest Temple</p></div><div class="game"><img src="https://gms.parcoil.com/flappy-2048/favicon.ico" alt="Flappy 2048"><p>Flappy 2048</p></div><div class="game"><img src="https://gms.parcoil.com/flappy-bird/flappybird.jpg" alt="Flappy Bird"><p>Flappy Bird</p></div><div class="game"><img src="https://gms.parcoil.com/flashtetris/flashtetris.png" alt="Flash Tetris"><p>Flash Tetris</p></div><div class="game"><img src="https://gms.parcoil.com/flippy-fish/2022_10_28_0jt_Kleki.png" alt="Flippy Fish"><p>Flippy Fish</p></div><div class="game"><img src="https://gms.parcoil.com/fnaw/splash.png" alt="Five Nights at Wario's (FNAW)"><p>Five Nights at Wario's (FNAW)</p></div><div class="game"><img src="https://gms.parcoil.com/fridaynightfunkin/fnf-icon.jpg" alt="Friday Night Funkin'"><p>Friday Night Funkin'</p></div><div class="game"><img src="https://gms.parcoil.com/froggys-battle/splash.png" alt="Froggy's Battle"><p>Froggy's Battle</p></div><div class="game"><img src="https://gms.parcoil.com/fruitninja/FruitNinjaTeaser.jpg" alt="Fruit Ninja"><p>Fruit Ninja</p></div><div class="game"><img src="https://gms.parcoil.com/frying-nemo/splash.png" alt="Frying Nemo"><p>Frying Nemo</p></div><div class="game"><img src="https://gms.parcoil.com/game-inside/img/display.png" alt="Game Inside"><p>Game Inside</p></div><div class="game"><img src="https://gms.parcoil.com/generic-fishing-game/splash.png" alt="Generic Fishing Game"><p>Generic Fishing Game</p></div><div class="game"><img src="https://gms.parcoil.com/geodash/geoscratchicon.png" alt="Geo Dash"><p>Geo Dash</p></div><div class="game"><img src="https://gms.parcoil.com/georgeandtheprinter/img/SnDTEn.png" alt="George and the Printer"><p>George and the Printer</p></div><div class="game"><img src="https://gms.parcoil.com/getaway-shootout/img/images.jpg" alt="Getaway Shootout"><p>Getaway Shootout</p></div><div class="game"><img src="https://gms.parcoil.com/gimme-the-airpod/img/logo.png" alt="Gimme the Airpod"><p>Gimme the Airpod</p></div><div class="game"><img src="https://gms.parcoil.com/glass-city/image.png" alt="Glass City"><p>Glass City</p></div><div class="game"><img src="https://gms.parcoil.com/go-ball/game.jpg" alt="Go Ball"><p>Go Ball</p></div><div class="game"><img src="https://gms.parcoil.com/goodnight/goodnight.jpg" alt="Goodnight"><p>Goodnight</p></div><div class="game"><img src="https://gms.parcoil.com/google-feud/splash.png" alt="Google Feud"><p>Google Feud</p></div><div class="game"><img src="https://gms.parcoil.com/google-snake/img/snake.png" alt="Google Snake"><p>Google Snake</p></div><div class="game"><img src="https://gms.parcoil.com/gravity-soccer/splash.png" alt="Gravity Soccer"><p>Gravity Soccer</p></div><div class="game"><img src="https://gms.parcoil.com/greybox/ico.png" alt="Greybox"><p>Greybox</p></div><div class="game"><img src="https://gms.parcoil.com/grindcraft/img/splash.png" alt="Grindcraft"><p>Grindcraft</p></div><div class="game"><img src="https://gms.parcoil.com/hackertype/logo192.png" alt="Hacker Type"><p>Hacker Type</p></div><div class="game"><img src="https://gms.parcoil.com/handshakes/splaher.png" alt="Handshakes"><p>Handshakes</p></div><div class="game"><img src="https://gms.parcoil.com/happy-hop/splash.png" alt="Happy Hop"><p>Happy Hop</p></div><div class="game"><img src="https://gms.parcoil.com/hba/hoverbotarena.JPG" alt="HBA"><p>HBA</p></div><div class="game"><img src="https://gms.parcoil.com/helicopter/helicopter.png" alt="Helicopter"><p>Helicopter</p></div><div class="game"><img src="https://gms.parcoil.com/hexempire/hexempire.jpg" alt="Hex Empire"><p>Hex Empire</p></div><div class="game"><img src="https://gms.parcoil.com/hextris/images/hextris-logo.png" alt="Hextris"><p>Hextris</p></div><div class="game"><img src="https://gms.parcoil.com/hungry-lamu/splash.png" alt="Hungry Lamu"><p>Hungry Lamu</p></div><div class="game"><img src="https://gms.parcoil.com/idle-breakout/img/thumbnail.png" alt="Idle Breakout"><p>Idle Breakout</p></div><div class="game"><img src="https://gms.parcoil.com/idle-shark/img/sharkgame.png" alt="Idle Shark"><p>Idle Shark</p></div><div class="game"><img src="https://gms.parcoil.com/impossiblequiz/impossiblequiz.png" alt="Impossible Quiz"><p>Impossible Quiz</p></div><div class="game"><img src="https://gms.parcoil.com/interactivebuddy/interactivebuddy.jpg" alt="Interactive Buddy"><p>Interactive Buddy</p></div><div class="game"><img src="https://gms.parcoil.com/jetpack-joyride/splash.jpg" alt="Jetpack Joyride"><p>Jetpack Joyride</p></div><div class="game"><img src="https://gms.parcoil.com/just-fall/unnamed.png" alt="Just Fall"><p>Just Fall</p></div><div class="game"><img src="https://gms.parcoil.com/just-one-boss/pv1Gr5.png" alt="Just One Boss"><p>Just One Boss</p></div><div class="game"><img src="https://gms.parcoil.com/kitchen-gun-game/splash.png" alt="Kitchen Gun Game"><p>Kitchen Gun Game</p></div><div class="game"><img src="https://gms.parcoil.com/kittencannon/kittencannon.png" alt="Kitten Cannon"><p>Kitten Cannon</p></div><div class="game"><img src="https://gms.parcoil.com/knife-master/512x512.jpg" alt="Knife Master"><p>Knife Master</p></div><div class="game"><img src="https://gms.parcoil.com/krunker/img/krunker-io.jpg" alt="Krunker"><p>Krunker</p></div><div class="game"><img src="https://gms.parcoil.com/learntofly/learntofly.png" alt="Learn to Fly"><p>Learn to Fly</p></div><div class="game"><img src="https://gms.parcoil.com/learntofly2/learn-to-fly-2.jpg" alt="Learn to Fly 2"><p>Learn to Fly 2</p></div><div class="game"><img src="https://gms.parcoil.com/madalin-stunt-cars-2/img/logo.jpg" alt="Madalin Stunt Cars 2"><p>Madalin Stunt Cars 2</p></div><div class="game"><img src="https://gms.parcoil.com/madalin-stunt-cars-3/img/index.jpg" alt="Madalin Stunt Cars 3"><p>Madalin Stunt Cars 3</p></div><div class="game"><img src="https://gms.parcoil.com/mario/Theme/Mario.gif" alt="Mario"><p>Mario</p></div><div class="game"><img src="https://gms.parcoil.com/marvinspectrum/marvinspectrum.png" alt="Marvin Spectrum"><p>Marvin Spectrum</p></div><div class="game"><img src="https://gms.parcoil.com/matrixrampage/matrixrampage.jpg" alt="Matrix Rampage"><p>Matrix Rampage</p></div><div class="game"><img src="https://gms.parcoil.com/meme2048/img/hot.gif" alt="Meme 2048"><p>Meme 2048</p></div><div class="game"><img src="https://gms.parcoil.com/merge-round-racers/splash.png" alt="Merge Round Racers"><p>Merge Round Racers</p></div><div class="game"><img src="https://gms.parcoil.com/mineblocks/splash.png" alt="Mine Blocks"><p>Mine Blocks</p></div><div class="game"><img src="https://gms.parcoil.com/minecraft-15/splash.jpeg" alt="Minecraft 1.5"><p>Minecraft 1.5</p></div><div class="game"><img src="https://gms.parcoil.com/minecraft-18/splash.png" alt="Minecraft 1.8"><p>Minecraft 1.8</p></div><div class="game"><img src="https://gms.parcoil.com/minecraft-classic/pack.png" alt="Minecraft Classic"><p>Minecraft Classic</p></div><div class="game"><img src="https://gms.parcoil.com/minecraftbeta/bg_main.png" alt="Minecraft Beta"><p>Minecraft Beta</p></div><div class="game"><img src="https://gms.parcoil.com/minesweeper/img/minesweeper.png" alt="Minesweeper"><p>Minesweeper</p></div><div class="game"><img src="https://gms.parcoil.com/miniputt/miniputt.png" alt="Mini Putt"><p>Mini Putt</p></div><div class="game"><img src="https://gms.parcoil.com/missiles/miss.png" alt="Missiles"><p>Missiles</p></div><div class="game"><img src="https://gms.parcoil.com/motox3m/splash.jpg" alt="Moto X3M"><p>Moto X3M</p></div><div class="game"><img src="https://gms.parcoil.com/motox3m-pool/splash.jpg" alt="Moto X3M Pool"><p>Moto X3M Pool</p></div><div class="game"><img src="https://gms.parcoil.com/motox3m-spooky/splash.jpeg" alt="Moto X3M Spooky"><p>Moto X3M Spooky</p></div><div class="game"><img src="https://gms.parcoil.com/motox3m-winter/download.jpeg" alt="Moto X3M Winter"><p>Moto X3M Winter</p></div><div class="game"><img src="https://gms.parcoil.com/motox3m2/Moto-X3M-2.webp" alt="Moto X3M 2"><p>Moto X3M 2</p></div><div class="game"><img src="https://gms.parcoil.com/my-rusty-submarine/splash.png" alt="My Rusty Submarine"><p>My Rusty Submarine</p></div><div class="game"><img src="https://gms.parcoil.com/n-gon/img/n-gonbot.png" alt="N-Gon"><p>N-Gon</p></div><div class="game"><img src="https://gms.parcoil.com/ninja/logo1.png" alt="Ninja"><p>Ninja</p></div><div class="game"><img src="https://gms.parcoil.com/ninjavsevilcorp/splash.png" alt="Ninja vs Evil Corp"><p>Ninja vs Evil Corp</p></div><div class="game"><img src="https://gms.parcoil.com/noob-steve-parkour/512x512.jpg" alt="Noob Steve Parkour"><p>Noob Steve Parkour</p></div><div class="game"><img src="https://gms.parcoil.com/ns-shaft/favicon.png" alt="NS Shaft"><p>NS Shaft</p></div><div class="game"><img src="https://gms.parcoil.com/nsresurgence/neon.png" alt="NS Resurgence"><p>NS Resurgence</p></div><div class="game"><img src="https://gms.parcoil.com/om-bounce/assets/icon.jpeg" alt="Om Bounce"><p>Om Bounce</p></div><div class="game"><img src="https://gms.parcoil.com/ovo/ovo3.png" alt="OVO"><p>OVO</p></div><div class="game"><img src="https://gms.parcoil.com/pandemic2/pandemic2.png" alt="Pandemic 2"><p>Pandemic 2</p></div><div class="game"><img src="https://gms.parcoil.com/papasburgeria/splash.jpg" alt="Papa's Burgeria"><p>Papa's Burgeria</p></div><div class="game"><img src="https://gms.parcoil.com/papaspizzaria/papaspizzaria.jpg" alt="Papa's Pizzeria"><p>Papa's Pizzeria</p></div><div class="game"><img src="https://gms.parcoil.com/paperio2/images/icon512.png" alt="Paper.io 2"><p>Paper.io 2</p></div><div class="game"><img src="https://gms.parcoil.com/papery-planes/splash.jpg" alt="Papery Planes"><p>Papery Planes</p></div><div class="game"><img src="https://gms.parcoil.com/particle-clicker/assets/pc32@2x.png" alt="Particle Clicker"><p>Particle Clicker</p></div><div class="game"><img src="https://gms.parcoil.com/pixel-gun-survival/512x512.png" alt="Pixel Gun Survival"><p>Pixel Gun Survival</p></div><div class="game"><img src="https://gms.parcoil.com/polybranch/img/pic1.png" alt="Polybranch"><p>Polybranch</p></div><div class="game"><img src="https://gms.parcoil.com/popcat-classic/android-chrome-512x512.png" alt="Popcat Classic"><p>Popcat Classic</p></div><div class="game"><img src="https://gms.parcoil.com/portalflash/portaltheflashversion.jpg" alt="Portal Flash"><p>Portal Flash</p></div><div class="game"><img src="https://gms.parcoil.com/precision-client/logo.png" alt="Precision Client"><p>Precision Client</p></div><div class="game"><img src="https://gms.parcoil.com/protektor/splash.jpg" alt="Protektor"><p>Protektor</p></div><div class="game"><img src="https://gms.parcoil.com/push-the-square/img/splash.png" alt="Push the Square"><p>Push the Square</p></div><div class="game"><img src="https://gms.parcoil.com/push-your-luck/assets/img/push.png" alt="Push Your Luck"><p>Push Your Luck</p></div><div class="game"><img src="https://gms.parcoil.com/rabbit-samurai/splash.png" alt="Rabbit Samurai"><p>Rabbit Samurai</p></div><div class="game"><img src="https://gms.parcoil.com/rabbit-samurai2/splash.png" alt="Rabbit Samurai 2"><p>Rabbit Samurai 2</p></div><div class="game"><img src="https://gms.parcoil.com/resent-client/splash.jpg" alt="Resent Client"><p>Resent Client</p></div><div class="game"><img src="https://gms.parcoil.com/retro-bowl/img/icon.jpg" alt="Retro Bowl"><p>Retro Bowl</p></div><div class="game"><img src="https://gms.parcoil.com/riddleschool/riddleschool.png" alt="Riddle School"><p>Riddle School</p></div><div class="game"><img src="https://gms.parcoil.com/riddleschool2/riddleschool2.png" alt="Riddle School 2"><p>Riddle School 2</p></div><div class="game"><img src="https://gms.parcoil.com/riddleschool3/riddleschool3.png" alt="Riddle School 3"><p>Riddle School 3</p></div><div class="game"><img src="https://gms.parcoil.com/riddleschool4/riddleschool4.png" alt="Riddle School 4"><p>Riddle School 4</p></div><div class="game"><img src="https://gms.parcoil.com/riddleschool5/riddleschool5.png" alt="Riddle School 5"><p>Riddle School 5</p></div><div class="game"><img src="https://gms.parcoil.com/riddletransfer/riddletransfer.png" alt="Riddle Transfer"><p>Riddle Transfer</p></div><div class="game"><img src="https://gms.parcoil.com/riddletransfer2/riddletransfer2.png" alt="Riddle Transfer 2"><p>Riddle Transfer 2</p></div><div class="game"><img src="https://gms.parcoil.com/rolling-forests/icon.png" alt="Rolling Forests"><p>Rolling Forests</p></div><div class="game"><img src="https://gms.parcoil.com/rolly-vortex/icon-256.png" alt="Rolly Vortex"><p>Rolly Vortex</p></div><div class="game"><img src="https://gms.parcoil.com/rooftop-snipers/img/thumb.png" alt="Rooftop Snipers"><p>Rooftop Snipers</p></div><div class="game"><img src="https://gms.parcoil.com/ruffle/splash.png" alt="Ruffle"><p>Ruffle</p></div><div class="game"><img src="https://gms.parcoil.com/slap-the-monkey/slap-the-monkey.jpg" alt="Slap The Monkey"><p>Slap The Monkey</p></div><div class="game"><img src="https://gms.parcoil.com/sand-game/sand-game.PNG" alt="Sand Game"><p>Sand Game</p></div><div class="game"><img src="https://gms.parcoil.com/sandboxels/sandboxels.jpg" alt="Sandboxels"><p>Sandboxels</p></div><div class="game"><img src="https://gms.parcoil.com/santy-is-home/splash.png" alt="Santy is Home"><p>Santy is Home</p></div><div class="game"><img src="https://gms.parcoil.com/scrapmetal/img/splash.png" alt="Scrap Metal"><p>Scrap Metal</p></div><div class="game"><img src="https://gms.parcoil.com/shellshockers/img/favicon.png" alt="Shell Shockers"><p>Shell Shockers</p></div><div class="game"><img src="https://gms.parcoil.com/shotinthedark/shot.png" alt="Shot in the Dark"><p>Shot in the Dark</p></div><div class="game"><img src="https://gms.parcoil.com/shuttledeck/splash.png" alt="Shuttle Deck"><p>Shuttle Deck</p></div><div class="game"><img src="https://gms.parcoil.com/sky-car-stunt/512x512.jpg" alt="Sky Car Stunt"><p>Sky Car Stunt</p></div><div class="game"><img src="https://gms.parcoil.com/ sleepingbeauty/splash.png" alt="Sleeping Beauty"><p>Sleeping Beauty</p></div><div class="game"><img src="https://gms.parcoil.com/slime-rush-td/splash.png" alt="Slime Rush TD"><p>Slime Rush TD</p></div><div class="game"><img src="https://gms.parcoil.com/slope/slope4.jpeg" alt="Slope"><p>Slope</p></div><div class="game"><img src="https://gms.parcoil.com/slope-2/slope-2-logo.png" alt="Slope 2"><p>Slope 2</p></div><div class="game"><img src="https://gms.parcoil.com/slope-ball/icon.jpg" alt="Slope Ball"><p>Slope Ball</p></div><div class="game"><img src="https://gms.parcoil.com/smashkarts/images/icon-512.png" alt="Smash Karts"><p>Smash Karts</p></div><div class="game"><img src="https://gms.parcoil.com/smokingbarrels/smokingbarrels.jpg" alt="Smoking Barrels"><p>Smoking Barrels</p></div><div class="game"><img src="https://gms.parcoil.com/snowbattle/img/logo.png" alt="Snow Battle"><p>Snow Battle</p></div><div class="game"><img src="https://gms.parcoil.com/soccer-random/splash.png" alt="Soccer Random"><p>Soccer Random</p></div><div class="game"><img src="https://gms.parcoil.com/soccer-skills/splash.png" alt="Soccer Skills"><p>Soccer Skills</p></div><div class="game"><img src="https://gms.parcoil.com/soldier-legend/images/logo.jpg" alt="Soldier Legend"><p>Soldier Legend</p></div><div class="game"><img src="https://gms.parcoil.com/solitaire/img/hover.jpg" alt="Solitaire"><p>Solitaire</p></div><div class="game"><img src="https://gms.parcoil.com/sort-the-court/img/splash.png" alt="Sort the Court"><p>Sort the Court</p></div><div class="game"><img src="https://gms.parcoil.com/soundboard/img/mlg-favicon.png" alt="Soundboard"><p>Soundboard</p></div><div class="game"><img src="https://gms.parcoil.com/space-company/whiteLogo.png" alt="Space Company"><p>Space Company</p></div><div class="game"><img src="https://gms.parcoil.com/spacegarden/spl.png" alt="Space Garden"><p>Space Garden</p></div><div class="game"><img src="https://gms.parcoil.com/spinningrat/favicon-32x32.png" alt="Spinning Rat"><p>Spinning Rat</p></div><div class="game"><img src="https://gms.parcoil.com/stack/stack.png" alt="Stack"><p>Stack</p></div><div class="game"><img src="https://gms.parcoil.com/stack-bump-3d/thumbnail.jpg" alt="Stack Bump 3D"><p>Stack Bump 3D</p></div><div class="game"><img src="https://gms.parcoil.com/starve/img/favicon.png" alt="Starve"><p>Starve</p></div><div class="game"><img src="https://gms.parcoil.com/station-141/75wxYs.png" alt="Station 141"><p>Station 141</p></div><div class="game"><img src="https://gms.parcoil.com/stealingthediamond/stealingthediamond.jpg" alt="Stealing the Diamond"><p>Stealing the Diamond</p></div><div class="game"><img src="https://gms.parcoil.com/stick-archers/splash.jpg" alt="Stick Archers"><p>Stick Archers</p></div><div class="game"><img src="https://gms.parcoil.com/stick-duel-battle/512x512.jpg" alt="Stick Duel Battle"><p>Stick Duel Battle</p></div><div class="game"><img src="https://gms.parcoil.com/stick-merge/splash.png" alt="Stick Merge"><p>Stick Merge</p></div><div class="game"><img src="https://gms.parcoil.com/stickman-boost/icon-256.png" alt="Stickman Boost"><p>Stickman Boost</p></div><div class="game"><img src="https://gms.parcoil.com/stickman-golf/splash.png" alt="Stickman Golf"><p>Stickman Golf</p></div><div class="game"><img src="https://gms.parcoil.com/stickman-hook/unnamed.jpg" alt="Stickman Hook"><p>Stickman Hook</p></div><div class="game"><img src="https://gms.parcoil.com/stickwar/stickwar.jpg" alt="Stick War"><p>Stick War</p></div><div class="game"><img src="https://gms.parcoil.com/stormthehouse2/stormthehouse2.jpg" alt="Storm the House 2"><p>Storm the House 2</p></div><div class="game"><img src="https://gms.parcoil.com/subway-surfers/img/splash.jpg" alt="Subway Surfers"><p>Subway Surfers</p></div><div class="game"><img src="https://gms.parcoil.com/subway-surfers-ny/NewYorkIcon.png" alt="Subway Surfers NY"><p>Subway Surfers NY</p></div><div class="game"><img src="https://gms.parcoil.com/superhot/hot.jpg" alt="Superhot"><p>Superhot</p></div><div class="game"><img src="https://gms.parcoil.com/supermarioconstruct/icons/icon-256.png" alt="Super Mario Construct"><p>Super Mario Construct</p></div><div class="game"><img src="https://gms.parcoil.com/surviv/img/favicon.png" alt="Surviv"><p>Surviv</p></div><div class="game"><img src="https://gms.parcoil.com/sushi-unroll/favicon.png" alt="Sushi Unroll"><p>Sushi Unroll</p></div><div class="game"><img src="https://gms.parcoil.com/swerve/img/favicon.jpg" alt="Swerve"><p>Swerve</p></div><div class="game"><img src="https://gms.parcoil.com/synesthesia/index.splash.png" alt="Synesthesia"><p>Synesthesia</p></div><div class="game"><img src="https://gms.parcoil.com/tactical-weapon-pack-2/splash.jpg" alt="Tactical Weapon Pack 2"><p>Tactical Weapon Pack 2</p></div><div class="game"><img src="https://gms.parcoil.com/tacticalassasin2/tacticalassassin2.png" alt="Tactical Assassin 2"><p>Tactical Assassin 2</p></div><div class="game"><img src="https://gms.parcoil.com/tank-trouble-2/tank.jpeg" alt="Tank Trouble 2"><p>Tank Trouble 2</p></div><div class="game"><img src="https://gms.parcoil.com/tanuki-sunset/img/logo.png" alt="Tanuki Sunset"><p>Tanuki Sunset</p></div><div class="game"><img src="https://gms.parcoil.com/temple-run-2/img/temple-run-2-256.png" alt="Temple Run 2"><p>Temple Run 2</p></div><div class="game"><img src="https://gms.parcoil.com/the-final-earth/images.png" alt="The Final Earth"><p>The Final Earth</p></div><div class="game"><img src="https://gms.parcoil.com/the-hotel/splash.png" alt="The Hotel"><p>The Hotel</p></div><div class="game"><img src="https://gms.parcoil.com/thebattle/thebattle.png" alt="The Battle"><p>The Battle</p></div><div class="game"><img src="https://gms.parcoil.com/theheist/theheist.jpg" alt="The Heist"><p>The Heist</p></div><div class="game"><img src="https://gms.parcoil.com/there-is-no-game/logo.png" alt="There Is No Game"><p>There Is No Game</p></div><div class="game"><img src="https://gms.parcoil.com/thisistheonlylevel/thisistheonlylevel.png" alt="This Is the Only Level"><p>This Is the Only Level</p></div><div class="game"><img src="https://gms.parcoil.com/tiny-fishing/tiny-fishing.png" alt="Tiny Fishing"><p>Tiny Fishing</p></div><div class="game"><img src="https://gms.parcoil.com/tiny-islands/splash.png" alt="Tiny Islands"><p>Tiny Islands</p></div><div class="game"><img src="https://gms.parcoil.com/tosstheturtle/tosstheturtle.png" alt="Toss the Turtle"><p>Toss the Turtle</p></div><div class="game"><img src="https://gms.parcoil.com/townscaper/img/cover.jpg" alt="Townscaper"><p>Townscaper</p></div><div class="game"><img src="https://gms.parcoil.com/tube-jumpers/img/icon.jpg" alt="Tube Jumpers"><p>Tube Jumpers</p></div><div class="game"><img src="https://gms.parcoil.com/tunnel-rush/img/tunnel.jpg" alt="Tunnel Rush"><p>Tunnel Rush</p></div><div class="game"><img src="https://gms.parcoil.com/tv-static/static.png" alt="TV Static"><p>TV Static</p></div><div class="game"><img src="https://gms.parcoil.com/twitch-tetris/logo.png" alt="Twitch Tetris"><p>Twitch Tetris</p></div><div class="game"><img src="https://gms.parcoil.com/veloce/qN6zkD.png" alt="Veloce"><p>Veloce</p></div><div class="game"><img src="https://gms.parcoil.com/vex3/vex3.png" alt="Vex 3"><p>Vex 3</p></div><div class="game"><img src="https://gms.parcoil.com/vex4/vex4.png" alt="Vex 4"><p>Vex 4</p></div><div class="game"><img src="https://gms.parcoil.com/vex5/vex.jpeg" alt="Vex 5"><p>Vex 5</p></div><div class="game"><img src="https://gms.parcoil.com/vex6/assets/icon.png" alt="Vex 6"><p>Vex 6</p></div><div class="game"><img src="https://gms.parcoil.com/vex7/assets/icon.png" alt="Vex 7"><p>Vex 7</p></div><div class="game"><img src="https://gms.parcoil.com/wallsmash/thumb.png" alt="Wall Smash"><p>Wall Smash</p></div><div class="game"><img src="https://gms.parcoil.com/waterworks/square.png" alt="Waterworks"><p>Waterworks</p></div><div class="game"><img src="https://gms.parcoil.com/weavesilk/thumb.png" alt="WeaveSilk"><p>WeaveSilk</p></div><div class="game"><img src="https://gms.parcoil.com/webgl-fluid-simulation/promo_back.png" alt="WebGL Fluid Simulation"><p>WebGL Fluid Simulation</p></div><div class="game"><img src="https://gms.parcoil.com/webretro/assets/icons/iconm256.png" alt="WebRetro"><p>WebRetro</p></div><div class="game"><img src="https://gms.parcoil.com/win-the-whitehouse/splash.png" alt="Win the White House"><p>Win the White House</p></div><div class="game"><img src="https://gms.parcoil.com/wolf3d/art/wolf3d.png" alt="Wolf 3D"><p>Wolf 3D</p></div><div class="game"><img src="https://gms.parcoil.com/wordle/img/logo_512x512.png" alt="Wordle"><p>Wordle</p></div><div class="game"><img src="https://gms.parcoil.com/worlds-hardest-game/images/splash.jpg" alt="World's Hardest Game"><p>World's Hardest Game</p></div><div class="game"><img src="https://gms.parcoil.com/worlds-hardest-game-2/the-worlds-hardest-game-2.jpg" alt="World's Hardest Game 2"><p>World's Hardest Game 2</p></div><div class="game"><img src="https://gms.parcoil.com/x-trial-racing/splash.png" alt="X-Trial Racing"><p>X-Trial Racing</p></div><div class="game"><img src="https://gms.parcoil.com/xx142-b2exe/splash.png" alt="xx142-B2.exe"><p>xx142-B2.exe</p></div><div class="game"><img src="https://gms.parcoil.com/yoshifabrication/icons/icon-512.png" alt="Yoshi Fabrication"><p>Yoshi Fabrication</p></div><div class="game"><img src="https://gms.parcoil.com/you-are-bezos/img/banner.png" alt="You Are Bezos"><p>You Are Bezos</p></div><div class="game"><img src="https://gms.parcoil.com/zombs-royale/zomb.png" alt="Zombs Royale"><p>Zombs Royale</p></div></div>
+    <div class="footer">
+        <a style="font-weight: 700">a site by</a>
+        <a style="font-weight: 700" class="link" href="https://dsc.gg/parcoil">parcoil network</a>
+    </div>
 
+    <script>
+        // Initialize paricles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 160, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: {
+                    type: "circle",
+                    stroke: { width: 0, color: "#000000" },
+                    polygon: { nb_sides: 5 },
+                    image: { src: "img/github.svg", width: 100, height: 100 },
+                },
+                opacity: {
+                    value: 1,
+                    random: true,
+                    anim: { enable: false, speed: 1, opacity_min: 0, sync: false },
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: { enable: false, speed: 4, size_min: 0.3, sync: false },
+                },
+                line_linked: {
+                    enable: false,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1,
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: { enable: false, rotateX: 600, rotateY: 600 },
+                },
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: false, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true,
+                },
+                modes: {
+                    grab: { distance: 400, line_linked: { opacity: 1 } },
+                    bubble: { distance: 250, size: 0, duration: 2, opacity: 0, speed: 3 },
+                    repulse: { distance: 400, duration: 0.4 },
+                    push: { particles_nb: 4 },
+                    remove: { particles_nb: 2 },
+                },
+            },
+            retina_detect: true,
+        });
     </script>
-</head>
-<body>
-        <div class="game-card" onclick="openFullscreen('https://db.duck.quackprep.com/html/minecraft/')"> 
-            <img src="https://i.scdn.co/image/ab6761610000517485151ccfa8247209c79699c7" alt="Minecraft">
-            <h3>Minecraft</h3>
-        </div>
-            <div class="game-card" onclick="openFullscreen('https://reds-games.vercel.app/games/slope/')"> 
-            <img src="https://img.itch.zone/aW1nLzE2NTU0MTk2LnBuZw==/original/N4RBS3.png" alt="Slope">
-            <h3>Slope</h3>
-        </div>
-            <div class="game-card" onclick="openFullscreen('https://reds-games.vercel.app/games/retro-bowl/')"> 
-            <img src="https://upload.wikimedia.org/wikipedia/en/b/bf/Retro_Bowl_cover.png" alt="Retro Bowl">
-            <h3>Retro Bowl</h3>
-        </div>
-            <div class="game-card" onclick="openFullscreen('https://reds-games.vercel.app/games/motox3m2/')"> 
-            <img src="https://motox3m2.io/data/image/game/motox3m.png" alt="MotoX3M2">
-            <h3>MotoX3M2</h3>
-        </div>
-            <!-- copy one of these to add new games, change link to wanted game, and img to a links favicon (icon on the tab) the alt will just show the text if img doesnt work (change the text to work as well) -->
-        </div>
-</body> 
-</html>
+
+
+</body></html>
