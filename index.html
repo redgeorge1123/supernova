@@ -1,293 +1,161 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head><base target="_blank">
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supernova</title> <!-- change this to the title of the tab you want -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Supernova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&amp;display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #6a4c9c;
-            color: white;
-        }
-        header {
-            background-color: #5e3b8f;
-            color: white;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: flex-end;
-        }
-        header button {
-            background-color: #7f5f9f;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 20px;
-        }
-        header button:hover {
-            background-color: #9b6fcf;
-        }
-        .section {
-            padding: 40px;
-            text-align: center;
-            background-color: #7f5f9f;
-        }
-        .game-card {
-            display: inline-block;
-            width: 200px;
-            height: 250px;
-            background-color: #8e6ba7;
-            margin: 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            color: white;
-            text-align: center;
-        }
-        .game-card img {
-            width: 100%;
-            height: 160px;
-            border-radius: 10px 10px 0 0;
-        }
-        .game-card h3 {
-            margin-top: 10px;
-        }
-        footer {
-            background-color: #5e3b8f;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        iframe.fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: 1000;
-        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Silkscreen', monospace; display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh; position: relative; cursor: none; }
+        canvas { position: absolute; top: 0; left: 0; }
+        #cursor-dot { position: fixed; width: 8px; height: 8px; background: #0af; border-radius: 50%; pointer-events: none; z-index: 100000; box-shadow: 0 0 8px #0af, 0 0 20px #06f; transition: transform 0.05s ease; mix-blend-mode: screen; }
+        #cursor-ring { position: fixed; width: 36px; height: 36px; border: 2px solid rgba(0, 170, 255, 0.5); border-radius: 50%; pointer-events: none; z-index: 99999; transition: width 0.2s, height 0.2s, border-color 0.2s; mix-blend-mode: screen; }
+        #cursor-ring.hover { width: 50px; height: 50px; border-color: #0af; box-shadow: 0 0 12px #0af; }
+        #loading-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10000; transition: opacity 0.6s ease; }
+        #loading-screen.fade-out { opacity: 0; pointer-events: none; }
+        #loading-text { font-size: 32px; color: #0af; letter-spacing: 6px; margin-bottom: 28px; text-shadow: 0 0 8px #0af, 0 0 20px #06f; }
+        #loading-bar-outer { width: 240px; height: 4px; border: 1.5px solid #0af; border-radius: 4px; overflow: hidden; background: #111; box-shadow: 0 0 10px rgba(0, 170, 255, 0.3); }
+        #loading-bar-inner { height: 100%; width: 0%; background: linear-gradient(90deg, #06f, #0af, #0df); border-radius: 4px; transition: width 1.2s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 0 8px #0af; }
+        #loading-hint { margin-top: 16px; font-size: 10px; color: #06f; letter-spacing: 3px; opacity: 0; animation: fadeInHint 0.6s 0.4s ease forwards; }
+        @keyframes fadeInHint { to { opacity: 0.5; } }
+        #main-content { opacity: 0; transition: opacity 0.8s ease; width: 100%; height: 100%; }
+        #main-content.visible { opacity: 1; }
+        #scanline-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.06) 3px, rgba(0,0,0,0.06) 6px); }
+        #vignette { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9997; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.7) 100%); }
+        .battery-container { position: fixed; top: 24px; left: 24px; width: 110px; height: 54px; border: 2px solid #0af; border-radius: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3px; background: rgba(0,10,30,0.6); backdrop-filter: blur(6px); transition: transform 0.4s ease, box-shadow 0.4s ease; z-index: 9999; cursor: pointer; }
+        .battery-container:hover { transform: scale(1.1); box-shadow: 0 0 12px #0af, 0 0 30px rgba(0,170,255,0.3); }
+        .battery-text { font-size: 11px; font-weight: bold; margin-bottom: 3px; color: #0af; letter-spacing: 1px; }
+        .battery-wrapper { position: relative; width: 85%; height: 10px; border: 1.5px solid #0af; border-radius: 7px; overflow: hidden; background: #111; }
+        .battery-level { height: 100%; background: linear-gradient(90deg, #06f, #0af, #0df); transition: width 1s ease-in-out; box-shadow: 0 0 6px #0af inset; }
+        .battery-tip { width: 5px; height: 10px; background: #0af; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); border-radius: 3px; }
+        .battery-bolt { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 9px; color: #0df; opacity: 0; transition: opacity 0.3s; }
+        .battery-bolt.charging { opacity: 1; animation: boltPulse 1s ease infinite; }
+        @keyframes boltPulse { 0%, 100% { opacity: 0.6 } 50% { opacity: 1 } }
+        #neon-clock { position: fixed; top: 24px; right: 24px; font-size: 18px; color: #0af; letter-spacing: 3px; z-index: 9999; text-shadow: 0 0 8px #0af, 0 0 20px #06f; background: rgba(0,10,30,0.6); backdrop-filter: blur(6px); padding: 10px 18px; border: 1.5px solid rgba(0,170,255,0.3); border-radius: 20px; transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s; cursor: default; }
+        #neon-clock:hover { border-color: #0af; box-shadow: 0 0 12px #0af, 0 0 30px rgba(0,170,255,0.3); transform: scale(1.05); }
+        #clock-date { font-size: 9px; color: #06f; letter-spacing: 2px; margin-top: 2px; text-align: center; }
+        #center-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; z-index: 1; transform-style: preserve-3d; }
+        #center-text { font-size: clamp(48px, 10vw, 110px); z-index: 1; background: linear-gradient(90deg, #0af, #06f, #0df, #0af); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 30px; cursor: pointer; transition: transform 0.35s ease, filter 0.35s ease; position: relative; filter: brightness(1.6) saturate(1.6) drop-shadow(0 0 10px #0af) drop-shadow(0 0 25px #06f) drop-shadow(0 0 50px #0df); animation: gradientShiftText 6s ease infinite, neonFlicker 2.8s infinite, glitchShift 4s infinite; }
+        #center-text::before, #center-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: inherit; background-size: inherit; -webkit-background-clip: text; -webkit-text-fill-color: transparent; pointer-events: none; }
+        #center-text::before { animation: glitchLayer1 3s infinite; clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); }
+        #center-text::after { animation: glitchLayer2 2.5s infinite; clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); }
+        @keyframes glitchLayer1 { 0%, 92%, 100% { transform: translate(0) } 93% { transform: translate(-4px, -1px); filter: hue-rotate(40deg) } 95% { transform: translate(3px, 1px); filter: hue-rotate(-20deg) } 97% { transform: translate(-2px, 0) } }
+        @keyframes glitchLayer2 { 0%, 88%, 100% { transform: translate(0) } 89% { transform: translate(3px, 1px); filter: hue-rotate(-30deg) } 91% { transform: translate(-4px, -1px); filter: hue-rotate(30deg) } 93% { transform: translate(2px, 0) } }
+        #center-text:hover { transform: scale(1.08); filter: brightness(1.4) saturate(1.7) drop-shadow(0 0 12px #0af) drop-shadow(0 0 30px #06f); }
+        #subtitle { font-size: 12px; letter-spacing: 6px; color: #06f; margin-top: -20px; margin-bottom: 35px; text-transform: uppercase; text-shadow: 0 0 6px #06f; opacity: 0.7; }
+        form { display: flex; align-items: center; border: 3px solid #0af; border-radius: 2rem; padding: 4px; background: rgba(0,10,30,0.4); backdrop-filter: blur(8px); box-shadow: 0 0 12px rgba(0,170,255,0.4); transition: box-shadow 0.35s ease, border-color 0.3s ease; position: relative; transform: translateZ(30px); }
+        form:hover, form:focus-within { border-color: #0df; box-shadow: 0 0 18px #0af, 0 0 40px rgba(0,100,255,0.3); }
+        input[type="search"] { all: unset; color: #0af; padding: 0 1rem; font-size: 16px; font-family: 'Silkscreen', monospace; width: 260px; transition: width 0.3s ease; caret-color: #0af; }
+        input[type="search"]:focus { width: 340px; }
+        input[type="search"]::-webkit-search-cancel-button { display: none; }
+        ::placeholder { color: rgba(0,170,255,0.4); opacity: 1; }
+        button { all: unset; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #0af; transition: color 0.2s, transform 0.2s; }
+        button:hover { color: #0df; transform: scale(1.15); }
+        svg { width: 24px; height: 24px; fill: currentColor; }
+        #clear-btn { margin-right: 4px; visibility: hidden; }
+        #clear-btn.visible { visibility: visible; }
+        #announcement { position: fixed; top: 90px; right: 24px; background: rgba(0,10,30,0.7); backdrop-filter: blur(10px); border: 2px solid rgba(0,100,255,0.5); border-radius: 16px; padding: 16px 22px 18px 22px; color: #0af; text-align: left; z-index: 9999; box-shadow: 0 0 20px rgba(0,100,255,0.2); animation: slideIn 0.6s ease forwards; transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s; font-size: 12px; letter-spacing: 1px; max-width: 280px; }
+        .close-btn { position: absolute; top: 6px; right: 10px; background: none; border: none; color: #06f; font-size: 16px; cursor: pointer; width: auto; height: auto; transition: color 0.2s, transform 0.2s; }
+        .close-btn:hover {
+    color: #b366ff;
+    transform: rotate(-10deg);                      /* tilt counter‑clockwise */
+}; }
+        @keyframes spinClose { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #announcement-title { font-size: 10px; letter-spacing: 3px; color: #06f; margin-bottom: 8px; text-transform: uppercase; }
+        .announcement-intro { margin: 0 0 8px 0; line-height: 1.4; color: #9ad6ff; }
+        .announcement-heading { margin: 4px 0 6px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #c19bff; }
+        .announcement-list { margin: 0; padding-left: 18px; list-style-type: disc; }
+        .announcement-list li { margin-bottom: 4px; line-height: 1.3; }
+        .click-burst { position: fixed; width: 4px; height: 4px; border-radius: 50%; background: #0af; pointer-events: none; z-index: 99998; box-shadow: 0 0 4px #0af, 0 0 8px #06f; }
+        #bottom-nav { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 9999; }
+        .nav-pill { font-size: 10px; letter-spacing: 2px; color: #06f; padding: 8px 18px; border: 1.5px solid rgba(0,100,255,0.3); border-radius: 20px; background: rgba(0,10,30,0.5); backdrop-filter: blur(6px); cursor: pointer; transition: all 0.3s ease; text-decoration: none; text-transform: uppercase; }
+        .nav-pill:hover { color: #0af; border-color: #0af; box-shadow: 0 0 10px rgba(0,170,255,0.3); transform: translateY(-2px); background: rgba(0,20,60,0.6); }
+        #audio-toggle, #theme-toggle { position: fixed; bottom: 24px; width: 40px; height: 40px; border: 1.5px solid rgba(0,170,255,0.3); border-radius: 50%; background: rgba(0,10,30,0.6); backdrop-filter: blur(6px); color: #06f; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; font-size: 16px; transition: all 0.3s ease; }
+        #audio-toggle { right: 24px; }
+        #theme-toggle { left: 24px; font-size: 14px; }
+        #audio-toggle:hover, #theme-toggle:hover { border-color: #0af; color: #0af; box-shadow: 0 0 10px rgba(0,170,255,0.3); transform: scale(1.1); }
+        #audio-toggle.active { border-color: #0af; color: #0af; box-shadow: 0 0 8px #0af; }
+        @keyframes gradientShiftText { 0% { background-position: 0% 50% } 50% { background-position: 100% 50% } 100% { background-position: 0% 50% } }
+        @keyframes neonFlicker { 0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1 } 20%, 24%, 55% { opacity: .85 } }
+        @keyframes glitchShift { 0% { transform: translate(0) } 93% { transform: translate(-2px, 1px) } 94% { transform: translate(2px, -1px) } 95% { transform: translate(-1px, -2px) } 96% { transform: translate(1px, 2px) } 97% { transform: translate(0) } }
+        @keyframes slideIn { 0% { transform: translateX(50px) scale(0.9); opacity: 0 } 100% { transform: translateX(0) scale(1); opacity: 1 } }
+        @keyframes slideOut { 0% { transform: translateX(0) scale(1); opacity: 1 } 100% { transform: translateX(40px) scale(0.9); opacity: 0 } }
+        @media (max-width: 768px) { #center-text { font-size: 48px; } input[type="search"] { width: 180px; font-size: 14px; } input[type="search"]:focus { width: 220px; } .battery-container { top: 16px; left: 16px; width: 90px; height: 46px; } #neon-clock { top: 16px; right: 16px; font-size: 14px; padding: 8px 14px; } #announcement { top: 75px; right: 16px; max-width: 180px; font-size: 10px; } .nav-pill { font-size: 8px; padding: 6px 12px; } }
     </style>
-    <script>
-        function openFullscreen(url) {
-            const iframe = document.createElement('iframe');
-            iframe.src = url;
-            iframe.className = 'fullscreen';
-            iframe.setAttribute('allowfullscreen', '');
-            document.body.appendChild(iframe);
-
-            iframe.onclick = () => {
-                iframe.remove(); // closes the iframe once you click (remove this if not wanted)
-            };
-        }
-    </script>
 </head>
 <body>
-    <header>
-        <button onclick="location.href='index.html'">Games</button>
-        <button onclick="location.href='apps.html'">Apps</button>
-        <button onclick="location.href='soundboard.html'">Soundboard</button>
-        <button onclick="location.href='browser.html'">Browser</button>
-    </header>
-    <div class="section">
-        <h2>Games</h2> <!-- change this to what you want above ur games -->
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/minecraft.html/')"> 
-            <img src="https://i.scdn.co/image/ab6761610000517485151ccfa8247209c79699c7" alt="Minecraft">
-            <h3>Minecraft</h3>
+    <div id="cursor-dot" style="left: 967px; top: 72px;"></div>
+    <div id="cursor-ring" class="" style="left: 953.251px; top: 58.1076px;"></div>
+    <div id="loading-screen" class="fade-out" style="display: none;"><div id="loading-text" style="animation: 0.2s ease 0s infinite normal none running glitchShift;">Supernova</div><div id="loading-bar-outer"><div id="loading-bar-inner" style="width: 100%;"></div></div><div id="loading-hint">Booting the system...</div></div>
+    <div id="scanline-overlay"></div><div id="vignette"></div>
+    <div id="main-content" class="visible">
+        <canvas id="canvas" width="986" height="574"></canvas>
+        <div class="battery-container" id="battery"><div class="battery-text"><span id="bat-pct">44</span>%</div><div class="battery-wrapper"><div class="battery-level" id="bat-level" style="width: 44%;"></div><div class="battery-tip"></div><div class="battery-bolt" id="bat-bolt">⚡</div></div></div>
+        <div id="neon-clock"><div id="clock-time">5:14:30 PM</div><div id="clock-date">THU, MAY 7</div></div>
+        <div id="announcement">
+            <button class="close-btn" onclick="this.parentElement.style.animation='slideOut 0.3s ease forwards';setTimeout(()=&gt;this.parentElement.remove(),300)">✕</button>
+            <div id="announcement-title">a word from benis</div>
+            <p class="announcement-intro">Last Update:<br>
+            <p1>may 5, 2026</p1>
+            </p><h3 class="announcement-heading">what's new</h3>
+            <ul class="announcement-list"><li>Faster page performance with less lag</li><li>Several Minor tweaks to the home page</li><li>Anime section expansion! New ai and music page and added eaglercraft!</li></ul>
         </div>
-            <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/slope.html/')"> 
-            <img src="https://img.itch.zone/aW1nLzE2NTU0MTk2LnBuZw==/original/N4RBS3.png" alt="Slope">
-            <h3>Slope</h3>
-        </div>
-            <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/retro-bowl.html/')"> 
-            <img src="https://upload.wikimedia.org/wikipedia/en/b/bf/Retro_Bowl_cover.png" alt="Retro Bowl">
-            <h3>Retro Bowl</h3>
-        </div>
-            <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/motoX3M2.html/')"> 
-            <img src="https://motox3m2.io/data/image/game/motox3m.png" alt="MotoX3M2">
-            <h3>MotoX3M2</h3>
-        </div>
-            <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/beeswarmsim.html')"> 
-            <img src="https://epicdrops.com/cdn/shop/products/bss-img-bee_starter_pack_s1-1_2048x.jpg?v=1648228617" alt="MotoX3M2">
-            <h3>Bee Swarm</h3>
-        </div>
-            <div class="game-card" onclick="openFullscreen('https://supernova-vercel.app/Games/color-block-jam.html/')"> 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEbabZyPjy_-WGe9qZ6sFZcvuOZy0uVRjypw&s" alt="MotoX3M2">
-            <h3>Color Block Jam</h3>
-        </div>
-            <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/infinite-craft.html/')"> 
-            <img src="https://play-lh.googleusercontent.com/YJFHGSmrMGuUqyWZ0oZDgDtDErIU2jQY3yT_PG9IRL6s5dBLmKXrXQShM3n8HFoPhkM=w240-h480-rw" alt="MotoX3M2">
-            <h3>Infinite Craft</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vefcel.app/Games/krunker.html/')"> 
-            <img src="https://kevin.games/assets/images/games/krunker-io.jpg" alt="Krunker.io">
-            <h3>Krunker.io</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/agar.html/')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHaBmrNqCK6xfStjMmy-bdzsHuUOn3DBkd7w&s" alt="Agar.io">
-            <h3>Agar.io</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/slither.html/')">
-            <img src="https://slithergame.io//data/image/game/slithergame-favicon.png" alt="Slither.io">
-            <h3>Slither.io</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/shellshock.html/')">
-            <img src="https://imgs.crazygames.com/shellshockersio_1x1/20260203211252/shellshockersio_1x1-cover?format=auto&quality=100&metadata=none&width=1200" alt="Shell Shockers">
-            <h3>Shell Shockers</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/diep.html/')">
-            <img src="https://upload.wikimedia.org/wikipedia/en/e/e2/Diepio_mobile_logo.webp" alt="Diep.io">
-            <h3>Diep.io</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/driftboss.html')">
-            <img src="https://play-lh.googleusercontent.com/Zu0LoruCtIG45qs6iffZkWqGTuzEWflNoH8TNRtfMJ2NGgJxQGfw8kqSrxKtXGjPqeqFLNsnubW6EnPUJvOi8g=w240-h480-rw" alt="Drift Boss">
-            <h3>Drift Boss</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/cookie-clicker.html')">
-            <img src="https://pizza-edition-nine.vercel.app/media/cookie-clicker.png" alt="Drift Boss">
-            <h3>Cookie Clicker</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/geometrydash.html')">
-            <img src="https://pizza-edition-nine.vercel.app/media/geometry-dash.png" alt="Drift Boss">
-            <h3>Geometry Dash</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/geometrydashlite.html')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS36LfVGkBSEBxqC-_E0JmBhn_LVJo0FkyEA&s" alt="Drift Boss">
-            <h3>Geometry Dash Lite</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/baldisbasicsclassic.html')">
-            <img src="https://play-lh.googleusercontent.com/EPV1TB4So1lB0DGrdCVExDpNU8ML67nd8OqBeoOIM-s6sDicxmDdPvCXD6n7LKevFl0" alt="Drift Boss">
-            <h3>Baldis Basics Classic</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/baldisbasicsclassicremastered.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/466.png" alt="Drift Boss">
-            <h3>Baldis Basics Classic Remastered</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/baldisbasicsplus.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/467.png" alt="Drift Boss">
-            <h3>Baldis Basics Plus</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/granny.html')">
-            <img src="https://play-lh.googleusercontent.com/yT_LBq_tyKeIDohKDsqN_Qt18jGIPUYIxY2C-1-E2YA9Qd60uZW08pua17qBmIiDPA" alt="Drift Boss">
-            <h3>Granny</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/granny2.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/125.png" alt="Drift Boss">
-            <h3>Granny 2</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/granny3.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/126.png" alt="Drift Boss">
-            <h3>Granny 3</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/thornandballoons.html')">
-            <img src="https://cdn.jsdelivr.net/gh/mathlesson/mathlesson.github.io/img/thorns-and-ballons.jpg" alt="Drift Boss">
-            <h3>Thorn And Balloon</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/games/hollow-knight.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/468.png" alt="Drift Boss">
-            <h3>Hollow Knight</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/blockblast.html')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrIsjgJ8ANbZXcf7vnapv51SRpYcvnVaFGkg&s" alt="Drift Boss">
-            <h3>Block Blast</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/pixelpath.html')">
-            <img src="https://www.onlinegames.io/media/posts/1050/pixel_path_game.webp" alt="Drift Boss">
-            <h3>Pixel Path</h3>
-       </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/FNF.html')">
-            <img src="https://fnf-games.io/data/image/game/fnf/fnf.webp" alt="Drift Boss">
-            <h3>Friday Night Funkin</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/FNFVSHUGGY.html')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxU_BEKoGK5x8biSqywV6WaaFhZ9U5GPaSBg&s" alt="Drift Boss">
-            <h3>FNF Vs Huggy</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/FNFVSCATNAP.html')">
-            <img src="https://i1.sndcdn.com/artworks-Yljc2pgSe2zzZvGY-HZyPBA-t500x500.jpg" alt="Drift Boss">
-            <h3>FNF Vs Catnap</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/bloxorz.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/169.png" alt="Drift Boss">
-            <h3>bloxorz</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/worldshardestgame.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/103.png" alt="Drift Boss">
-            <h3>Worlds Hardest Game</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/worldshardestgame2.html')">
-            <img src="https://kotaku.com/igdb/image/upload/t_cover_big/co5qm2.jpg" alt="Drift Boss">
-            <h3>Worlds Hardest Game 2</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/worldshardestgame3.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/104.png" alt="Drift Boss">
-            <h3>Worlds Hardest Game 3</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/worldshardestgame4.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/105.png" alt="Drift Boss">
-            <h3>Worlds Hardest Game 4</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/OvO.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/1.png" alt="Drift Boss">
-            <h3>OvO</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/OvO2.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/2.png" alt="Drift Boss">
-            <h3>OvO 2</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/choppyorc.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/464.png" alt="Drift Boss">
-            <h3>Choppy Orc</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/amaze.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/26.png" alt="Drift Boss">
-            <h3>Amaze</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/EscapeRoad.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/264.png" alt="Drift Boss">
-            <h3>Escape Road</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/EscapeRoad2.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/265.png" alt="Drift Boss">
-            <h3>Escape Road 2</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/EscapeRoad3.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/792.png" alt="Drift Boss">
-            <h3>Escape Road 3</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/BadTimeSimulator.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/472.png" alt="Drift Boss">
-            <h3>Bad Time Simulator</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/SpacebarClicker.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/473.png" alt="Drift Boss">
-            <h3>Spacebar Clicker</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/subwaysurfers.html')">
-            <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/6cb3646f9210326b80124e79d6b75192/subway-surfers-logo.png" alt="Drift Boss">
-            <h3>Subway Surfers</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/schoolboyrunaway.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/605.png" alt="Drift Boss">
-            <h3>SchoolBoy Runaway</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/ovomorelevels.html')">
-            <img src="https://ovolevel.com/static/images/how-many-levels-are-in-ovo-complete-guide.jpg" alt="Drift Boss">
-            <h3>OvO More Levels</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/-3.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/816.png" alt="Drift Boss">
-            <h3>-3</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://supernova-sigma.vercel.app/Games/raldi.html')">
-            <img src="https://cdn.jsdelivr.net/gh/freebuisness/covers@main/670.png" alt="Drift Boss">
-            <h3>Raldis Crackhouse</h3>
-            <!-- copy one of these to add new games, change link to wanted game, and img to a links favicon (icon on the tab) the alt will just show the text if img doesnt work (change the text to work as well) -->
-        </div>
-</body> 
-</html>
+        <div id="center-container" style="transform: translate(calc(-50% + 11.6349px), calc(-50% - 5.88153px)) perspective(600px) rotateX(7.35192deg) rotateY(9.69574deg);"><div id="center-text" data-text="Supernova" style="filter: brightness(1.6) saturate(1.6) drop-shadow(rgb(0, 170, 255) 0px 0px 12px) drop-shadow(rgb(0, 102, 255) 0px 0px 30px) drop-shadow(rgb(0, 221, 255) 0px 0px 60px);">Supernova</div><div id="subtitle"></div><form role="search" id="form" style="background: rgba(0, 10, 30, 0.4);">
+    </div>
+    <iframe id="yt-ambient-player" style="display:none;" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="nintendo music for when you're working on a deadline" width="1" height="1" src="https://www.youtube.com/embed/8nU46Ws6TZQ?autoplay=0&amp;controls=0&amp;rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=8nU46Ws6TZQ&amp;playsinline=1&amp;enablejsapi=1&amp;origin=https%3A%2F%2F273049698-atari-embeds.googleusercontent.com&amp;widget_referrer=https%3A%2F%2F273049698-atari-embeds.googleusercontent.com%2Fembeds%2F16cb204cf3a9d4d223a0a3fd8b0eec5d%2Finner-frame-minified.html%3Fjsh%3Dm%253B%252F_%252Fscs%252Fabc-static%252F_%252Fjs%252Fk%253Dgapi.lb.en.gSqfLc8WnvU.O%252Fd%253D1%252Frs%253DAHpOoo_cXXGArE2dtw6vkGR2NQ_1f5L3AQ%252Fm%253D__feature&amp;widgetid=1&amp;forigin=https%3A%2F%2F273049698-atari-embeds.googleusercontent.com%2Fembeds%2F16cb204cf3a9d4d223a0a3fd8b0eec5d%2Finner-frame-minified.html%3Fjsh%3Dm%253B%252F_%252Fscs%252Fabc-static%252F_%252Fjs%252Fk%253Dgapi.lb.en.gSqfLc8WnvU.O%252Fd%253D1%252Frs%253DAHpOoo_cXXGArE2dtw6vkGR2NQ_1f5L3AQ%252Fm%253D__features__&amp;aoriginsup=1&amp;aorigins=https%3A%2F%2F273049698-atari-embeds.googleusercontent.com%2Chttps%3A%2F%2Fwww.gstatic.com%2Chttps%3A%2F%2Fsites.google.com&amp;gporigin=https%3A%2F%2F273049698-atari-embeds.googleusercontent.com%2Fembeds%2F16cb204cf3a9d4d223a0a3fd8b0eec5d%2Finner-frame-minified.html%3Fjsh%3Dm%253B%252F_%252Fscs%252Fabc-static%252F_%252Fjs%252Fk%253Dgapi.lb.en.gSqfLc8WnvU.O%252Fd%253D1%252Frs%253DAHpOoo_cXXGArE2dtw6vkGR2NQ_1f5L3AQ%252Fm%253D__features__&amp;vf=1"></iframe>
+    <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/8fb635c2/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        const themes = [
+            { name:'Neptune', pri:'#0af', sec:'#06f', ter:'#0df', r:[0,170,255], r2:[0,100,255] },
+            { name:'Crimson', pri:'#f44', sec:'#a00', ter:'#f88', r:[255,68,68], r2:[170,0,0] },
+            { name:'Emerald', pri:'#0e6', sec:'#093', ter:'#4fa', r:[0,230,100], r2:[0,153,51] },
+            { name:'Violet', pri:'#a6f', sec:'#63c', ter:'#c8f', r:[170,100,255], r2:[100,50,200] },
+            { name:'Amber', pri:'#fa0', sec:'#c70', ter:'#fd4', r:[255,170,0], r2:[200,120,0] },
+        ];
+        let themeIdx = 0;
+        function applyTheme(t) {
+            document.querySelectorAll('.battery-container').forEach(el => el.style.borderColor = t.pri);
+            document.querySelectorAll('.battery-text').forEach(el => el.style.color = t.pri);
+            document.querySelectorAll('.battery-wrapper').forEach(el => el.style.borderColor = t.pri);
+            document.querySelectorAll('.battery-tip').forEach(el => el.style.background = t.pri);
+            const batLevel = document.getElementById('bat-level'); if (batLevel) batLevel.style.background = `linear-gradient(90deg, ${t.sec}, ${t.pri}, ${t.ter})`;
+            const clock = document.getElementById('neon-clock'); if (clock) { clock.style.color = t.pri; clock.style.textShadow = `0 0 8px ${t.pri}, 0 0 20px ${t.sec}`; clock.style.borderColor = `${t.pri}44`; }
+            const clockDate = document.getElementById('clock-date'); if (clockDate) clockDate.style.color = t.sec;
+            const form = document.getElementById('form'); if (form) { form.style.borderColor = t.pri; form.style.boxShadow = `0 0 12px ${t.pri}66, 0 0 30px ${t.sec}26`; }
+            const input = document.getElementById('query'); if (input) input.style.color = t.pri;
+            document.querySelectorAll('#form button').forEach(el => el.style.color = t.pri);
+            const ct = document.getElementById('center-text'); if (ct) { ct.style.background = `linear-gradient(90deg, ${t.pri}, ${t.sec}, ${t.ter}, ${t.pri})`; ct.style.backgroundSize = '400% 400%'; ct.style.webkitBackgroundClip = 'text'; ct.style.webkitTextFillColor = 'transparent'; ct.style.filter = `brightness(1.2) saturate(1.4) drop-shadow(0 0 6px ${t.pri}) drop-shadow(0 0 14px ${t.sec})`; }
+            const sub = document.getElementById('subtitle'); if (sub) { sub.style.color = t.sec; sub.style.textShadow = `0 0 6px ${t.sec}`; }
+            document.querySelectorAll('.nav-pill').forEach(el => { el.style.color = t.sec; el.style.borderColor = `${t.sec}44`; });
+            const ann = document.getElementById('announcement'); if (ann) { ann.style.color = t.pri; ann.style.borderColor = `${t.sec}88`; }
+            const annTitle = document.getElementById('announcement-title'); if (annTitle) annTitle.style.color = t.sec;
+            
+        document.getElementById('theme-toggle').addEventListener('click', () => { themeIdx = (themeIdx + 1) % themes.length; applyTheme(themes[themeIdx]); });
+        const loadingBar = document.getElementById('loading-bar-inner'); const loadingScreen = document.getElementById('loading-screen'); const mainContent = document.getElementById('main-content'); requestAnimationFrame(() => { loadingBar.style.width = '100%'; }); function finishLoading() { loadingScreen.classList.add('fade-out'); mainContent.classList.add('visible'); setTimeout(() => { loadingScreen.style.display = 'none'; }, 700); } setTimeout(finishLoading, 1800); setTimeout(() => { document.getElementById('loading-text').style.animation = 'glitchShift 0.2s infinite'; }, 1200);
+        
+        document.addEventListener('mouseout', e => { if (e.target.closest('button, a, .nav-pill, .battery-container, #audio-toggle, #theme-toggle, #center-text, #neon-clock')) cursorRing.classList.remove('hover'); });
+        document.addEventListener('click', e => { const count = 8 + Math.floor(Math.random() * 6); for (let i = 0; i < count; i++) { const spark = document.createElement('div'); spark.className = 'click-burst'; spark.style.left = e.clientX + 'px'; spark.style.top = e.clientY + 'px'; const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5) * 0.5; const dist = 30 + Math.random() * 50; const dx = Math.cos(angle) * dist; const dy = Math.sin(angle) * dist; spark.animate([{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: `translate(${dx}px,${dy}px) scale(0)`, opacity: 0 }], { duration: 500 + Math.random() * 300, easing: 'cubic-bezier(0,.8,.5,1)' }); document.body.appendChild(spark); setTimeout(() => spark.remove(), 900); } });
+        const f = document.getElementById('form'); const q = document.getElementById('query'); const clearBtn = document.getElementById('clear-btn'); const searchBase = 'https://sites.google.com/search/reds-games?query='; f.addEventListener('submit', e => { e.preventDefault(); if (q.value.trim()) window.open(searchBase + encodeURIComponent(q.value), '_blank'); }); clearBtn.addEventListener('click', () => { q.value = ''; clearBtn.classList.remove('visible'); q.focus(); }); q.addEventListener('input', () => { clearBtn.classList.toggle('visible', q.value.length > 0); });
+        let current = 0, charIndex = 0, typing = true; const speed = 90, pause = 1800; function typePlaceholder() { if (typing) { if (charIndex < placeholders[current].length) { q.placeholder = placeholders[current].substring(0, ++charIndex); setTimeout(typePlaceholder, speed); } else { typing = false; setTimeout(typePlaceholder, pause); } } else { if (charIndex > 0) { q.placeholder = placeholders[current].substring(0, --charIndex); setTimeout(typePlaceholder, speed / 2); } else { typing = true; current = (current + 1) % placeholders.length; setTimeout(typePlaceholder, speed); } } } typePlaceholder();
+        const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d'); let particles = []; const maxParticles = 70; const connectDist = 110; let pmouseX = 0, pmouseY = 0; function resize() { canvas.width = innerWidth; canvas.height = innerHeight; } window.addEventListener('resize', resize); resize(); document.addEventListener('mousemove', e => { pmouseX = e.clientX; pmouseY = e.clientY; }); function createParticle() { return { x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.6, vy: (Math.random() - 0.5) * 0.6, size: Math.random() * 3 + 1.5, alpha: 0, maxAlpha: 0.3 + Math.random() * 0.5, life: 0, maxLife: 450 + Math.random() * 650 }; }
+        function drawParticles() { ctx.clearRect(0, 0, canvas.width, canvas.height); const t = themes[themeIdx]; while (particles.length < maxParticles) particles.push(createParticle()); for (let i = particles.length - 1; i >= 0; i--) { const p = particles[i]; p.life++; if (p.life < 60) p.alpha = (p.life / 60) * p.maxAlpha; else if (p.life > p.maxLife - 60) p.alpha = ((p.maxLife - p.life) / 60) * p.maxAlpha; else p.alpha = p.maxAlpha; if (p.life >= p.maxLife) { particles.splice(i, 1); continue; } const dmx = p.x - pmouseX, dmy = p.y - pmouseY; const dm = Math.sqrt(dmx*dmx + dmy*dmy); if (dm < 120 && dm > 0.001) { const force = (120-dm)/120*0.3; p.vx += (dmx/dm)*force; p.vy += (dmy/dm)*force; } p.vx *= 0.99; p.vy *= 0.99; p.x += p.vx; p.y += p.vy; if (p.x < -10) p.x = canvas.width+10; if (p.x > canvas.width+10) p.x = -10; if (p.y < -10) p.y = canvas.height+10; if (p.y > canvas.height+10) p.y = -10; ctx.save(); ctx.globalAlpha = p.alpha; const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size*1.8); // smaller radius
+grad.addColorStop(0, `rgba(${t.r[0]},${t.r[1]},${t.r[2]},1)`);           // center full
+grad.addColorStop(0.5, `rgba(${t.r[0]},${t.r[1]},${t.r[2]},0.8)`);      // softer edge
+grad.addColorStop(0.9, `rgba(${t.r2[0]},${t.r2[1]},${t.r2[2]},0.4)`);   // less glowy rim
+ctx.fillStyle = grad;
+ctx.beginPath();
+ctx.arc(p.x, p.y, p.size*1.8, 0, Math.PI*2);
+ctx.fill(); ctx.restore(); } ctx.lineWidth = 0.5; for (let i = 0; i < particles.length; i++) { for (let j = i+1; j < particles.length; j++) { const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y; const d = Math.sqrt(dx*dx + dy*dy); if (d < connectDist) { const alpha = (1-d/connectDist)*0.25*Math.min(particles[i].alpha, particles[j].alpha); ctx.strokeStyle = `rgba(${t.r[0]},${t.r[1]},${t.r[2]},${alpha})`; ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); } } } requestAnimationFrame(drawParticles); } drawParticles();
+        const searchForm = document.getElementById('form'); searchForm.addEventListener('mousemove', e => { const rect = searchForm.getBoundingClientRect(); const x = e.clientX - rect.left, y = e.clientY - rect.top; const t = themes[themeIdx]; searchForm.style.background = `radial-gradient(circle 80px at ${x}px ${y}px, ${t.pri}44 0%, ${t.sec}22 40%, transparent 70%)`; searchForm.style.boxShadow = `0 0 18px ${t.pri}, 0 0 40px ${t.sec}44, inset 0 0 12px ${t.pri}22`; }); searchForm.addEventListener('mouseleave', () => { const t = themes[themeIdx]; searchForm.style.background = 'rgba(0,10,30,0.4)'; searchForm.style.boxShadow = `0 0 12px ${t.pri}66, 0 0 30px ${t.sec}26`; });
+        const centerContainer = document.getElementById('center-container'); const centerText = document.getElementById('center-text'); document.addEventListener('mousemove', e => { const cx = innerWidth/2, cy = innerHeight/2; const dx = (e.clientX-cx)/cx, dy = (e.clientY-cy)/cy; centerContainer.style.transform = `translate(calc(-50% + ${dx*12}px), calc(-50% + ${dy*8}px)) perspective(600px) rotateX(${dy*-10}deg) rotateY(${dx*10}deg)`; const t = themes[themeIdx]; centerText.style.filter = `brightness(1.6) saturate(1.6) drop-shadow(0 0 12px ${t.pri}) drop-shadow(0 0 30px ${t.sec}) drop-shadow(0 0 60px ${t.ter})`; });
+        const batPct = document.getElementById('bat-pct'); const batLevel = document.getElementById('bat-level'); const batBolt = document.getElementById('bat-bolt'); function updateBatteryUI(level, isCharging) { const pct = Math.round(level * 100); batPct.textContent = pct; batLevel.style.width = pct + '%'; batBolt.classList.toggle('charging', isCharging); } if (navigator.getBattery) { navigator.getBattery().then(batt => { updateBatteryUI(batt.level, batt.charging); batt.addEventListener('levelchange', () => updateBatteryUI(batt.level, batt.charging)); batt.addEventListener('chargingchange', () => updateBatteryUI(batt.level, batt.charging)); }); } else { updateBatteryUI(1, false); }
+        const clockTime = document.getElementById('clock-time'); const clockDate = document.getElementById('clock-date'); function updateClock() { const now = new Date(); clockTime.textContent = now.toLocaleTimeString('en-US', { hour24: false }); clockDate.textContent = now.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }).toUpperCase(); } updateClock(); setInterval(updateClock, 1000);
+        let ytPlayer = null; let ytReady = false; let audioPlaying = false; const audioBtn = document.getElementById('audio-toggle'); function startYouTubeAmbient() { if (!ytPlayer || !ytReady) return; ytPlayer.seekTo(0, true); ytPlayer.mute(); ytPlayer.setVolume(20); ytPlayer.playVideo(); audioBtn.classList.add('active'); audioPlaying = true; } function stopYouTubeAmbient() { if (!ytPlayer || !ytReady) return; ytPlayer.stopVideo(); audioBtn.classList.remove('active'); audioPlaying = false; }
+        window.onYouTubeIframeAPIReady = function () { try { ytPlayer = new YT.Player('yt-ambient-player', { height: '1', width: '1', videoId: '8nU46Ws6TZQ', playerVars: { autoplay: 0, controls: 0, rel: 0, modestbranding: 1, loop: 1, playlist: '8nU46Ws6TZQ', playsinline: 1, enablejsapi: 1, origin: window.location.origin }, events: { onReady: (event) => { ytReady = true; event.target.mute(); event.target.setVolume(20); }, onError: () => { ytReady = false; } } }); } catch (err) { ytReady = false; } };
+        audioBtn.addEventListener('click', () => { if (!audioPlaying) startYouTubeAmbient(); else stopYouTubeAmbient(); });
+        document.addEventListener('keydown', e => { if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); } if (e.key === 'Escape') { q.blur(); q.value = ''; clearBtn.classList.remove('visible'); } if (e.key === 't' && document.activeElement !== q) { themeIdx = (themeIdx+1)%themes.length; applyTheme(themes[themeIdx]); } if (e.key === 'm' && document.activeElement !== q) audioBtn.click(); });
+        setTimeout(() => { if (!document.getElementById('loading-screen').classList.contains('fade-out')) finishLoading(); }, 5000);
+    </script>
+
+</body></html>
