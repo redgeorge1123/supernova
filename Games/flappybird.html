@@ -1,0 +1,943 @@
+<html lang="en" prefix="og: http://ogp.me/ns#"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird - Play At Supernova</title>
+    <meta name="description" content="Play the Flappy Bird online! Fly the bird as far as you can without hitting a pipe. How many points can you score?">
+    <meta name="keywords" content="flappy, bird, game, play, online, free, arcade">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/favicon/safari-pinned-tab.svg" color="#70d86c">
+    <meta name="msapplication-TileColor" content="#70d86c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:title" content="Flappy Bird - Play Online">
+    <meta property="og:description" content="Play the Flappy Bird online! Fly the bird as far as you can without hitting a pipe. How many points can you score?">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flappybird.gg">
+    <meta property="og:site_name" content="Flappy Bird - Play Online">
+    <meta property="og:width" content="1024">
+    <meta property="og:height" content="1024">
+    <meta property="og:image" content="https://flappybird.gg/assets/img/flappy-bird.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Flappy Bird - Play Online">
+    <meta name="twitter:description" content="Play the Flappy Bird online! Fly the bird as far as you can without hitting a pipe. How many points can you score?">
+    <meta name="twitter:image" content="https://flappybird.gg/assets/img/flappy-bird.png">
+
+    <meta name="csrf-token" content="mbrcUnIs1CoG6y56QeTRS5MJ25YiSwQS9dbZA4Fc">
+
+    <script async="" src="https://count-server.sharethis.com/v2.0/get_counts?cb=window.__sharethis__.cb&amp;url=https%3A%2F%2Fflappybird.gg%2F"></script><script async="" src="https://buttons-config.sharethis.com/js/66eac1d1e960c500199ec9dd.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://flappybird.gg/assets/css/vendor.min.css?v1.18" rel="stylesheet">
+    <link href="https://flappybird.gg/assets/css/app.css?v1.18" rel="stylesheet">
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-FKC4TK8NTB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-FKC4TK8NTB');
+    </script>
+    
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=66eac1d1e960c500199ec9dd&amp;product=sop" async="async"></script>
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "brand": "https://flappybird.gg",
+    "name": "Flappy Bird - Play Online",
+    "description": "Play the Flappy Bird online! Fly the bird as far as you can without hitting a pipe. How many points can you score?",
+    "category": "Productivity",
+    "image": "https://flappybird.gg/assets/img/flappy-bird.png",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "worstRating": "1",
+        "bestRating": "5"
+                    ,"ratingValue": "4.6",
+        "ratingCount": "1215"
+                }
+    }
+</script>
+<link rel="stylesheet" href="chrome-extension://85b5bc94-3c7f-4f77-8484-8d64d43d5a83/app/content-style.css"><style type="text/css">#st-2 {
+  font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;;
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  backface-visibility: hidden;
+  display: block;
+  position: fixed;
+  opacity: 1;
+  text-align: left;
+  top: 160px;
+  z-index: 94034;
+}
+#st-2.st-left {
+  left: 0px;
+}
+#st-2.st-hidden.st-left {
+  left: -40px;
+}
+#st-2.st-hidden {
+  width: 80px;
+}
+#st-2.st-preview {
+  display: none!important;
+  opacity: 0!important;
+}
+#st-2 > div {
+  clear: left;
+  float: left;
+}
+#st-2 .st-btn {
+  -moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  height: 40px;
+  line-height: 20px;
+  margin-bottom: 0;
+  opacity: 1;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+  text-align: left;
+  top: 0;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 40px;
+}
+#st-2 .st-btn.st-first {
+  border-top: none;
+  border-top-right-radius: 4px;
+}
+#st-2 .st-btn.st-last {
+  border-bottom: none;
+  border-bottom-right-radius: 4px;
+}
+#st-2 .st-btn > svg {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  height: 20px;
+  margin-left: 0;
+  vertical-align: top;
+  width: 20px;
+}
+#st-2 .st-btn > img {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  height: 20px;
+  margin-left: 0;
+  vertical-align: top;
+  width: 20px;
+}
+#st-2 .st-btn > span {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  color: #fff;
+  display: inline-block;
+  font-weight: 500;
+  left: -35px;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  padding: 0 6px;
+  position: relative;
+  vertical-align: top;
+  filter: alpha(opacity=0);
+}
+#st-2 .st-btn.st-hide-label > span {
+  display: none !important;
+}
+#st-2 .st-total {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  background: #fff;
+  color: #555;
+  display: inline-block;
+  font-weight: 500;
+  line-height: 15px;
+  margin-right: 0;
+  min-height: 34px;
+  max-width: 80px;
+  opacity: 1;
+  padding: 4px 0;
+  text-align: center;
+  width: 40px;
+}
+#st-2 .st-total.st-hidden {
+  display: none;
+}
+#st-2 .st-total > span {
+  display: block;
+  font-size: 15px;
+  line-height: 18px;
+  padding: 0;
+}
+#st-2 .st-total > span.st-shares {
+  font-size: 9px;
+  line-height: 9px;
+}
+#st-2 .st-toggle {
+  left: -40px;
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  background: #ccc;
+  border-bottom-right-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 20px;
+  position: relative;
+  text-align: center;
+  width: 40px;
+}
+#st-2.st-hidden .st-toggle {
+  border-top-right-radius: 4px;
+}
+#st-2.st-left .st-toggle .st-left {
+  display: inline-block;
+}
+#st-2.st-left.st-hidden .st-toggle .st-left {
+  display: none;
+}
+#st-2.st-left .st-toggle .st-right {
+  display: none;
+}
+#st-2.st-left.st-hidden .st-toggle .st-right {
+  display: inline-block;
+}#st-2:hover .st-toggle {
+  left: 0;
+}
+#st-2.st-hidden:hover .st-toggle {
+  left: 40px;
+}
+#st-2.st-toggleable:hover .st-btn.st-last {
+  border-bottom-right-radius: 0;
+}
+#st-2.st-toggleable:hover .st-btn.st-last:hover {
+  border-bottom-right-radius: 4px;
+}
+#st-2 .st-btn:hover {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+#st-2.st-has-labels .st-btn:hover {
+  width: 120px;
+}
+#st-2:not(.st-has-labels) .st-btn:hover {
+  width: 52px;
+}
+#st-2 .st-btn.st-hide-label:hover {
+  width: 52px;
+}
+#st-2 .st-btn:hover > svg {
+  margin-left: 5px;
+}
+#st-2 .st-btn:hover > img {
+  margin-left: 5px;
+}
+#st-2 .st-btn:hover > span {
+  opacity: 1;
+  display: inline-block;
+  left: 0;
+  filter: alpha(opacity=100);
+}
+@media (max-width: 1024px) {
+  #st-2 .st-btn:hover > svg {
+    margin-left: 0;
+  }
+  #st-2 .st-btn:hover > span {
+    display: none;
+  }
+}@media (max-width: 1024px) {
+  #st-2 {
+  bottom: 0;
+  display: flex;
+  left: 0;
+  right: 0;
+  top: auto;
+  width: 100%;
+}
+#st-2.st-hidden {
+  bottom: -40px;
+  width: 100%;
+}
+#st-2.st-hidden.st-left {
+  left: 0;
+}
+#st-2.st-hidden.st-right {
+  right: 0;
+}
+#st-2 > div {
+  -moz-flex: 1;
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  clear: none;
+  flex: 1;
+  float: none;
+}
+#st-2 .st-total {
+  background: #fff;
+  padding: 6px 8px;
+}
+#st-2 .st-btn {
+  -moz-border-radius: 0 !important;
+-webkit-border-radius: 0 !important;
+border-radius: 0 !important;
+  text-align: center;
+  width: auto;
+}
+#st-2 .st-btn > span {
+  display: none;
+}
+#st-2 .st-toggle {
+  display: none;
+}body { padding-bottom: 48px; }
+}#st-2 .st-btn[data-network='pinterest'] {
+  background-color: #f9f7ef
+}
+#st-2 .st-btn[data-network='pinterest'] img {
+  filter: invert(53%) sepia(88%) saturate(445%) hue-rotate(54deg) brightness(100%) contrast(93%);
+}
+#st-2 .st-btn[data-network='pinterest'] > span {
+  color: #50af16
+}
+#st-2 .st-btn[data-network='facebook'] {
+  background-color: #f9f7ef
+}
+#st-2 .st-btn[data-network='facebook'] img {
+  filter: invert(53%) sepia(88%) saturate(445%) hue-rotate(54deg) brightness(100%) contrast(93%);
+}
+#st-2 .st-btn[data-network='facebook'] > span {
+  color: #50af16
+}
+#st-2 .st-btn[data-network='twitter'] {
+  background-color: #f9f7ef
+}
+#st-2 .st-btn[data-network='twitter'] img {
+  filter: invert(53%) sepia(88%) saturate(445%) hue-rotate(54deg) brightness(100%) contrast(93%);
+}
+#st-2 .st-btn[data-network='twitter'] > span {
+  color: #50af16
+}
+#st-2 .st-btn[data-network='yammer'] {
+  background-color: #f9f7ef
+}
+#st-2 .st-btn[data-network='yammer'] img {
+  filter: invert(53%) sepia(88%) saturate(445%) hue-rotate(54deg) brightness(100%) contrast(93%);
+}
+#st-2 .st-btn[data-network='yammer'] > span {
+  color: #50af16
+}
+#st-2 .st-btn[data-network='delicious'] {
+  background-color: #f9f7ef
+}
+#st-2 .st-btn[data-network='delicious'] img {
+  filter: invert(53%) sepia(88%) saturate(445%) hue-rotate(54deg) brightness(100%) contrast(93%);
+}
+#st-2 .st-btn[data-network='delicious'] > span {
+  color: #50af16
+}
+#st-2 .st-btn[data-network='whatsapp'] {
+  background-color: #f9f7ef
+}
+#st-2 .st-btn[data-network='whatsapp'] img {
+  filter: invert(53%) sepia(88%) saturate(445%) hue-rotate(54deg) brightness(100%) contrast(93%);
+}
+#st-2 .st-btn[data-network='whatsapp'] > span {
+  color: #50af16
+}#st-2 .st-btn[data-network='snapchat'] > span {
+  color: #333};
+}#st-2 .st-btn[data-network='copy']:hover {
+  width: max-content;
+}</style></head>
+<body>
+
+    <div class="wrapper">
+
+        
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "@id": "https://flappybird.gg/#organization",
+                    "name": "Flappy Bird",
+                    "url": "https://flappybird.gg/",
+                    "sameAs": []
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": "https://flappybird.gg/#website",
+                    "url": "https://flappybird.gg/",
+                    "name": "Flappy Bird",
+                    "publisher": {
+                        "@id": "https://flappybird.gg/#organization"
+                    }
+                },
+                {
+                    "@type": "WebPage",
+                    "@id": "https://flappybird.gg#webpage",
+                    "url": "https://flappybird.gg",
+                    "inLanguage": "en",
+                    "name": "Flappy Bird: Unblocked Game",
+                    "isPartOf": {
+                        "@id": "https://flappybird.gg#website"
+                    },
+                    "image": {
+                        "@type": "ImageObject",
+                        "@id": "https://flappybird.gg#primaryimage",
+                        "url": "https://flappybird.gg/assets/img/flappy-bird.png",
+                        "width": 1024,
+                        "height": 1024
+                    },
+                    "primaryImageOfPage": {
+                        "@id": "https://flappybird.gg#primaryimage"
+                    },
+                    "datePublished": "2021-04-12T19:42:27-12:00",
+                    "description": "Flappy Bird is a side-scrolling browser game where players control a small bird by tapping the screen to make it &quot;flap&quot; and fly. The objective is to navigate through gaps between green pipes without crashing. It&#039;s known for its simple controls but challenging gameplay, encouraging high-score competition."
+                }
+            ]
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "HowTo",
+            "name": "How to play Flappy Bird?",
+            "url": "https://flappybird.gg",
+            "inLanguage": "https://flappybird.gg",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://flappybird.gg/assets/img/flappy-bird.png"
+            },
+            "step": [
+                {
+                    "@type": "HowToStep",
+                    "position": 1,
+                    "name": "Start the Game",
+                    "text": "Open the flappybird.gg website on your device and press &quot;Start&quot; to initiate gameplay.",
+                    "image": "https://flappybird.gg/assets/img/flappy-bird-how-to-1.png"
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 2,
+                    "name": "Tap to Fly",
+                    "text": "Tap the screen to make the bird flap its wings, allowing it to fly upwards. Releasing your tap makes the bird descend due to gravity."
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 3,
+                    "name": "Navigate Pipes",
+                    "text": "Keep the bird afloat by tapping to fly through the gaps between green pipes that approach from the right.",
+                    "image": "https://flappybird.gg/assets/img/flappy-bird-how-to-3.png"
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 4,
+                    "name": "Avoid Obstacles",
+                    "text": "Ensure the bird doesn&#039;t hit any pipes or the ground, as crashing ends the game."
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 5,
+                    "name": "Strive for a High Score",
+                    "text": "Repeat the process to improve your skills and try to surpass your previous high score.",
+                    "image": "https://flappybird.gg/assets/img/flappy-bird-how-to-5.png"
+                }
+            ]
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What is Flappy Bird?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Flappy Bird is a mobile game developed by Vietnamese developer Dong Nguyen and released in 2013. In the game, players control a bird and navigate it through a series of pipes by tapping the screen to keep the bird flying."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How do you play Flappy Bird?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "To play Flappy Bird, simply tap the screen to make the bird flap its wings and ascend. The objective is to navigate the bird through gaps between green pipes without colliding with them. Each successful pass through a pair of pipes earns the player one point."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Why is Flappy Bird so difficult?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Flappy Bird's difficulty lies in its simple yet challenging gameplay mechanics. Players must have precise timing and coordination to navigate the bird through the narrow gaps between pipes. The speed of the game also gradually increases, making it more challenging as players progress."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How can I improve at Flappy Bird?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Improving at Flappy Bird requires practice and patience. Focus on timing your taps to keep the bird at the right height to pass through the pipes. It's essential to stay calm and avoid overreacting to obstacles. Additionally, studying the movement patterns of the pipes can help anticipate upcoming obstacles."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Are there any cheats or hacks for Flappy Bird?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "While there may be cheats or hacks available for Flappy Bird, it's essential to note that using them can detract from the challenge and satisfaction of the game. Additionally, some cheats or hacks may violate the game's terms of service or be considered cheating by other players."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can I still download Flappy Bird?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Flappy Bird was removed from app stores by its developer in 2014 due to its addictive nature and the overwhelming attention it received. However, it is still possible to find the game available for download through unofficial sources or by purchasing a device with the game pre-installed."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is Flappy Bird available on all devices?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Flappy Bird was originally released for iOS and Android devices, but now the game is also available right in your browser, just open the website flappybird.gg and play the game as much as you want"
+                    }
+                }
+            ]
+        }
+    </script>
+
+    <div class="wrapper__content">
+        <section class="game" id="game">
+                <iframe id="iframehtml5" width="100%" height="700" frameborder="0" border="0" scrolling="no" class="iframe-default" allowfullscreen="true" src="https://flappybird.gg/game"></iframe>
+        </section>
+
+        <div style="text-align:center;margin-top:10px">
+
+<!-- flappybird.gg - adapt hor -->
+<ins class="adsbygoogle A2O4W8X6IK" style="display:block" data-ad-client="ca-pub-1851068468056357" data-ad-slot="2724025478" data-ad-format="auto" data-full-width-responsive="true" title="Blocked (selector): "></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+        <!-- other games -->
+        <section class="other-games section-indent" id="other-games" style="padding-top:0;">
+            <div class="container">
+                <div class="section-heading" style="background: #e8f5d0;">
+                    <h2 class="section-heading__title">Play Other Games</h2>
+                </div>
+                <div class="other-games__wrapper">
+                    <a href="https://driftboss.org/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/drift-boss-play.png" alt="Drift Boss">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">Drift Boss</span>
+                            <span class="other-games__description">Addictive one-button drifting 🚗💨 game</span>
+                        </div>
+                    </a>
+                    <a href="https://snowrider.com/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/snow-rider-play.png" alt="Snow Rider">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">Snow Rider</span>
+                            <span class="other-games__description">Speedy sledding through snowy obstacles</span>
+                        </div>
+                    </a>
+                    <a href="https://blockbreaker.io/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/block-breaker-play.png" alt="Block Breaker">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">Block Breaker</span>
+                            <span class="other-games__description">Play Google Block Breaker game</span>
+                        </div>
+                    </a>
+                    <a href="https://snakegame.org/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/google-snake-play.png" alt="Google Snake">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">Snake Game</span>
+                            <span class="other-games__description">Make the snake 🐍 as long as possible</span>
+                        </div>
+                    </a>
+                    <a href="https://blockblast.game/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/block-blast-play.png" alt="Block Blast">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">Block Blast</span>
+                            <span class="other-games__description">Place blocks, clear rows, and score points!</span>
+                        </div>
+                    </a>
+                    <a href="https://dinosaur.gg/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/dinosaur-play.png" alt="Dinosaur Game">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">Dinosaur Game</span>
+                            <span class="other-games__description">Play Google Dino 🦕 T-Rex game</span>
+                        </div>
+                    </a>
+                    <a href="https://watermelongame.com/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/watermelon-play.png" alt="Watermelon Game">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">Watermelon Game</span>
+                            <span class="other-games__description">Merge fruits and get a watermelon!</span>
+                        </div>
+                    </a>
+                    <a href="https://sprunki.gg/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/sprunki-play.png" alt="Sprunki Incredibox">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">Sprunki</span>
+                            <span class="other-games__description">Create music with the Sprunki Incredibox game</span>
+                        </div>
+                    </a>
+                    <a href="https://2048.gg/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/2048-play.png" alt="2048 Game">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">2048</span>
+                            <span class="other-games__description">Merge the numbers and get 2048</span>
+                        </div>
+                    </a>
+                    <a href="https://retrobowl.org/" class="other-games__item" target="_blank">
+                        <picture class="other-games__img">
+                            <img src="/assets/img/retro-bowl-play.png" alt="Retro Bowl">
+                        </picture>
+                        <div class="other-games__body">
+                            <span class="other-games__title">Retro Bowl</span>
+                            <span class="other-games__description">Can you win the Retro Bowl?</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- end of other games -->
+        <!-- description -->
+        <section class="description section-indent-sm" id="description">
+            <div class="container">
+                <div class="description__wrapper">
+                    <picture class="description__img">
+                        <img src="/assets/img/logo.svg" alt="Flappy Bird">
+                    </picture>
+                    <div class="description__body">
+                        <h1 class="description__title">Flappy Bird: Unblocked Game</h1>
+                        <p class="description__description">Flappy Bird is a side-scrolling browser game where players control a small bird by tapping the screen to make it "flap" and fly. The objective is to navigate through gaps between green pipes without crashing. It's known for its simple controls but challenging gameplay, encouraging high-score competition.</p>
+                        <ul class="description__list">
+                            <li class="description__list-item">
+                                <a href="#how-to" class="description__link">How to play</a>
+                            </li>
+                            <li class="description__list-item">
+                                <a href="#faq" class="description__link">FAQ</a>
+                            </li>
+                            <li class="description__list-item">
+                                <a href="/about" class="description__link">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end of description -->
+
+        <!-- how to play -->
+        <section class="how-to section-indent" id="how-to">
+            <div class="container">
+                <div class="section-heading" style="background: #f5ecd1;">
+                    <h2 class="section-heading__title">How to play Flappy Bird?</h2>
+                </div>
+                <ul class="how-to__wrapper">
+                    <li class="how-to__item">
+                        <div class="how-to__elem">
+                            <h3 class="how-to__title">Start the Game</h3>
+                            <div class="how-to__content">
+                                <p class="how-to__description">Open the flappybird.gg website on your device and press "Start" to initiate gameplay.</p>
+                                <picture class="how-to__img">
+                                    <img src="/assets/img/flappy-bird-how-to-1.png" alt="Start the Game" title="Start the Game">
+                                </picture>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="how-to__item">
+                        <div class="how-to__elem">
+                            <h3 class="how-to__title">Tap to Fly</h3>
+                            <div class="how-to__content">
+                                <p class="how-to__description">Tap the screen to make the bird flap its wings, allowing it to fly upwards. Releasing your tap makes the bird descend due to gravity.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="how-to__item">
+                        <div class="how-to__elem">
+                            <h3 class="how-to__title">Navigate Pipes</h3>
+                            <div class="how-to__content">
+                                <p class="how-to__description">Keep the bird afloat by tapping to fly through the gaps between green pipes that approach from the right.</p>
+                                <picture class="how-to__img">
+                                    <img src="/assets/img/flappy-bird-how-to-3.png" alt="Navigate Pipes" title="Navigate Pipes">
+                                </picture>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="how-to__item">
+                        <div class="how-to__elem">
+                            <h3 class="how-to__title">Avoid Obstacles</h3>
+                            <div class="how-to__content">
+                                <p class="how-to__description">Ensure the bird doesn't hit any pipes or the ground, as crashing ends the game.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="how-to__item">
+                        <div class="how-to__elem">
+                            <h3 class="how-to__title">Strive for a High Score</h3>
+                            <div class="how-to__content">
+                                <p class="how-to__description">Repeat the process to improve your skills and try to surpass your previous high score.</p>
+                                <picture class="how-to__img">
+                                    <img src="/assets/img/flappy-bird-how-to-5.png" alt="Strive for a High Score" title="Strive for a High Score">
+                                </picture>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- end of how to play -->
+
+        <!-- faq -->
+        <section class="faq section-indent" id="faq">
+            <div class="container">
+                <div class="section-heading" style="background: #efe7f7;">
+                    <h2 class="section-heading__title">Frequently Asked Questions</h2>
+                </div>
+                <div class="faq__wrapper">
+                    <div class="accordeon faq__item is--open">
+                        <h3 class="accordeon__trigger">What is Flappy Bird?</h3>
+                        <div class="accordeon__wrapper" style="display: block;">
+                            <div class="accordeon__content">
+                                Flappy Bird is a mobile game developed by Vietnamese developer Dong Nguyen and released in 2013. In the game, players control a bird and navigate it through a series of pipes by tapping the screen to keep the bird flying.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordeon faq__item">
+                        <h3 class="accordeon__trigger">How do you play Flappy Bird?</h3>
+                        <div class="accordeon__wrapper">
+                            <div class="accordeon__content">
+                                To play Flappy Bird, simply tap the screen to make the bird flap its wings and ascend. The objective is to navigate the bird through gaps between green pipes without colliding with them. Each successful pass through a pair of pipes earns the player one point.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordeon faq__item">
+                        <h3 class="accordeon__trigger">Why is Flappy Bird so difficult?</h3>
+                        <div class="accordeon__wrapper">
+                            <div class="accordeon__content">
+                                Flappy Bird's difficulty lies in its simple yet challenging gameplay mechanics. Players must have precise timing and coordination to navigate the bird through the narrow gaps between pipes. The speed of the game also gradually increases, making it more challenging as players progress.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordeon faq__item">
+                        <h3 class="accordeon__trigger">How can I improve at Flappy Bird?</h3>
+                        <div class="accordeon__wrapper">
+                            <div class="accordeon__content">
+                                Improving at Flappy Bird requires practice and patience. Focus on timing your taps to keep the bird at the right height to pass through the pipes. It's essential to stay calm and avoid overreacting to obstacles. Additionally, studying the movement patterns of the pipes can help anticipate upcoming obstacles.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordeon faq__item">
+                        <h3 class="accordeon__trigger">Are there any cheats or hacks for Flappy Bird?</h3>
+                        <div class="accordeon__wrapper">
+                            <div class="accordeon__content">
+                                While there may be cheats or hacks available for Flappy Bird, it's essential to note that using them can detract from the challenge and satisfaction of the game. Additionally, some cheats or hacks may violate the game's terms of service or be considered cheating by other players.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordeon faq__item">
+                        <h3 class="accordeon__trigger">Can I still download Flappy Bird?</h3>
+                        <div class="accordeon__wrapper">
+                            <div class="accordeon__content">
+                                Flappy Bird was removed from app stores by its developer in 2014 due to its addictive nature and the overwhelming attention it received. However, it is still possible to find the game available for download through unofficial sources or by purchasing a device with the game pre-installed.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordeon faq__item">
+                        <h3 class="accordeon__trigger">Is Flappy Bird available on all devices?</h3>
+                        <div class="accordeon__wrapper">
+                            <div class="accordeon__content">
+                                Flappy Bird was originally released for iOS and Android devices, but now the game is also available right in your browser, just open the website flappybird.gg and play the game as much as you want
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end of faq -->
+
+        <!-- features -->
+        <section class="features section-indent" id="features">
+            <div class="container">
+                <div class="section-heading" style="background: #f6eaed;">
+                    <h2 class="section-heading__title">The key features of Flappy Bird</h2>
+                </div>
+                <div class="features__wrapper">
+                    <article class="features__item">
+                        <picture class="features__img">
+                            <img src="/assets/img/feature-01.svg" alt="Simple Gameplay" title="Simple Gameplay">
+                        </picture>
+                        <div class="features__body">
+                            <h3 class="features__title">Simple Gameplay</h3>
+                            <p class="features__description">Flappy Bird is known for its straightforward yet challenging gameplay. Players control a bird by tapping the screen to keep it airborne and navigate it through gaps between pipes.</p>
+                        </div>
+                    </article>
+                    <article class="features__item">
+                        <picture class="features__img">
+                            <img src="/assets/img/feature-02.svg" alt="Minimalist Graphics" title="Minimalist Graphics">
+                        </picture>
+                        <div class="features__body">
+                            <h3 class="features__title">Minimalist Graphics</h3>
+                            <p class="features__description">The game features simple, retro-style graphics with a minimalistic design. The background is often a plain, blue sky, and the obstacles consist of green pipes.</p>
+                        </div>
+                    </article>
+                    <article class="features__item">
+                        <picture class="features__img">
+                            <img src="/assets/img/feature-03.svg" alt="High Difficulty" title="High Difficulty">
+                        </picture>
+                        <div class="features__body">
+                            <h3 class="features__title">High Difficulty</h3>
+                            <p class="features__description">Flappy Bird is notoriously difficult. The narrow gaps between pipes and the increasing speed of the game make it challenging to navigate the bird without colliding with obstacles.</p>
+                        </div>
+                    </article>
+                    <article class="features__item">
+                        <picture class="features__img">
+                            <img src="/assets/img/feature-04.svg" alt="Score Tracking" title="Score Tracking">
+                        </picture>
+                        <div class="features__body">
+                            <h3 class="features__title">Score Tracking</h3>
+                            <p class="features__description">The game keeps track of the player's score, displayed at the top of the screen. Each successful pass through a pair of pipes earns the player one point.</p>
+                        </div>
+                    </article>
+                    <article class="features__item">
+                        <picture class="features__img">
+                            <img src="/assets/img/feature-05.svg" alt="Instant Restart:" title="Instant Restart:">
+                        </picture>
+                        <div class="features__body">
+                            <h3 class="features__title">Instant Restart:</h3>
+                            <p class="features__description">When the player collides with an obstacle and the game ends, they can quickly restart by tapping the screen, allowing for rapid retries.</p>
+                        </div>
+                    </article>
+                    <article class="features__item">
+                        <picture class="features__img">
+                            <img src="/assets/img/feature-06.svg" alt="Global Popularity" title="Global Popularity">
+                        </picture>
+                        <div class="features__body">
+                            <h3 class="features__title">Global Popularity</h3>
+                            <p class="features__description">Flappy Bird gained immense popularity worldwide shortly after its release in 2013, becoming one of the most downloaded and talked-about mobile games at the time.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- end of features -->
+
+        <!-- rating -->
+<section class="rating section-indent" id="rating">
+    <div class="container">
+        <div class="section-heading" style="background: #fff2cb;">
+            <h2 class="section-heading__title">Rate FlappyBird.gg</h2>
+        </div>
+        <div class="rating__wrapper">
+            <div class="rating-select rating__select starability-basic" data-section="index">
+                <input type="radio" id="star5" name="rating" value="5" class="rating-select__input" autocomplete="off">
+                <label for="star5" title="Excellent" class="rating-select__label"></label>
+                <input type="radio" id="star4" name="rating" value="4" class="rating-select__input" autocomplete="off">
+                <label for="star4" title="Good" class="rating-select__label"></label>
+                <input type="radio" id="star3" name="rating" value="3" class="rating-select__input" autocomplete="off">
+                <label for="star3" title="Average" class="rating-select__label"></label>
+                <input type="radio" id="star2" name="rating" value="2" class="rating-select__input" autocomplete="off">
+                <label for="star2" title="Poor" class="rating-select__label"></label>
+                <input type="radio" id="star1" name="rating" value="1" class="rating-select__input" autocomplete="off">
+                <label for="star1" title="Awful" class="rating-select__label"></label>
+            </div>
+            <div class="rating__group">
+                <span class="rating__value">4.6</span>
+                <span class="rating__help"><span>1,215</span> votes</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end of rating -->
+
+
+
+
+    </div>
+
+        <footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer__wrapper">
+            <div class="footer__inner">
+                <picture class="footer__logotype">
+                    <img src="/assets/img/logo.svg" alt="Flappy Bird">
+                </picture>
+                <p class="footer__copyright">Flappybird.gg © 2026 All rights reserved</p>
+            </div>
+            <ul class="footer__list">
+                <li class="footer__item">
+                    <a href="/about" class="footer__link">About</a>
+                </li>
+                <li class="footer__item">
+                    <a href="mailto:hello@flappybird.gg?subject=Flappy Bird" class="footer__link">Feedback</a>
+                </li>
+                <li class="footer__item">
+                    <a href="/privacy-policy" class="footer__link">Privacy Policy</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>    </div>
+
+    <script src="https://flappybird.gg/assets/js/vendor.min.js?v1.18"></script>
+    <script src="https://flappybird.gg/assets/js/app.js?v1.18"></script>
+
+    
+<div id="st-2" class=" st-sticky-share-buttons st-left st-toggleable st-has-labels st-show-total "><div class="st-total ">
+  <span class="st-label">76.9k</span>
+  <span class="st-shares">
+    Shares
+  </span>
+</div><div class="st-btn st-first" data-network="pinterest" style="display: inline-block;">
+  <img alt="pinterest sharing button" src="https://platform-cdn.sharethis.com/img/pinterest.svg">
+  <span class="st-label">Pin</span>
+</div><div class="st-btn" data-network="facebook" style="display: inline-block;">
+  <img alt="facebook sharing button" src="https://platform-cdn.sharethis.com/img/facebook.svg">
+  <span class="st-label">Share</span>
+</div><div class="st-btn" data-network="twitter" style="display: inline-block;">
+  <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
+  <span class="st-label">Post</span>
+</div><div class="st-btn st-last" data-network="whatsapp" style="display: inline-block;">
+  <img alt="whatsapp sharing button" src="https://platform-cdn.sharethis.com/img/whatsapp.svg">
+  <span class="st-label">Share</span>
+</div><div class="st-toggle">
+  <div class="st-left">
+    <img alt="arrow_left sharing button" src="https://platform-cdn.sharethis.com/img/arrow_left.svg">
+  </div>
+  <div class="st-right">
+    <img alt="arrow_right sharing button" src="https://platform-cdn.sharethis.com/img/arrow_right.svg">
+  </div>
+</div></div></body></html>
